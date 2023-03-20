@@ -26,12 +26,15 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a class="navbar-brand d-flex align-items-center fw-bold" href="/flight"><img
+                    <a class="navbar-brand d-flex align-items-center fw-bold" href="/user"><img
                             src="/assets/img/GoGoLogo.svg" width="42px" height="42px" class="me-2"><span
                             class="h2 mb-0">GGT</span></a>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link headertext" href="/user">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link headertext" href="/airport">Airport</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

@@ -14,6 +14,7 @@ class Flights extends Model
         'departure',
         'destination',
         'departDay',
+        'flightTime',
         'returnDay',
         'priceTicket',
         'state',
