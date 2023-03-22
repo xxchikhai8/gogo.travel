@@ -5,21 +5,37 @@
     <div class="col-4" id="collapse">
         <div class="shadow-lg rounded-3 border p-3">
             <form action="/seachflights" method="post">
+                @csrf
                 <h4>Search</h4>
-                <h6>From</h6>
-                <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="From" aria-label="From"
-                        aria-describedby="basic-addon1">
+                <h6>Departure</h6>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingSelect" name='departure'>
+                        <option selected value="">Choose Departure</option>
+                        @foreach ($airports as $airport)
+                            <option value={{ $airport->airportName }}>{{ $airport->location }} |
+                                {{ $airport->airportCode }}</option>
+                        @endforeach
+                    </select>
+                    <label for="floatingSelect">Departure</label>
                 </div>
-                <h6>To</h6>
-                <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="To" aria-label="To"
-                        aria-describedby="basic-addon1">
+                <h6>Destination</h6>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingSelect" name='destination'>
+                        <option selected value="">Choose Destination</option>
+                        @foreach ($airports as $airport)
+                            <option value={{ $airport->airportName }}>{{ $airport->location }} |
+                                {{ $airport->airportCode }}</option>
+                        @endforeach
+                    </select>
+                    <label for="floatingSelect">Destination</label>
                 </div>
                 <h6>Departure Date</h6>
-                <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Departure" aria-label="Departure"
-                        aria-describedby="basic-addon1">
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        <input type="date" name="departDay" class="form-control border border-dark"
+                            id="floatingInput" placeholder="Departure Day">
+                        <label for="floatingInput">Departure Day</label>
+                    </div>
                 </div>
                 <button type="submit" id="search-button" class="btn btn-primary d-block ms-auto">Search
                     Flights</button>
@@ -39,23 +55,23 @@
                 <div class="border border-dark p-2 rounded-2 mb-2" id="ticket-border">
                     <div class="card" id="border-transparent">
                         <div class="card-body">
-                            <div class="row row-cols-1 row-cols-lg-3">
+                            <div class="row row-cols-1 row-cols-lg-2">
                                 <div class="col">
-                                    <h6 class="fw-bold">From: {{ $flight->departure }} - To: {{ $flight->destination }}
-                                    </h6>
+                                    <h6 class="fw-bold">Departure: {{ $flight->departure }}</h6>
+                                    <h6 class="fw-bold">Destination: {{ $flight->destination }}</h6>
                                 </div>
-                                <div class="col d-none d-lg-flex"></div>
+                                {{-- <div class="col d-none d-lg-flex"></div> --}}
                                 <div class="col text-lg-end text-start">
                                     <?php $money = $flight->priceTicket;
                                     setlocale(LC_MONETARY, 'en_US'); ?>
                                     <h6>Price: $<?php echo number_format($money); ?></h6>
                                 </div>
-                                <a href="booking-ticket/{{$flight->flightID}}" class="stretched-link"></a>
+                                <a href="booking-ticket/{{ $flight->flightID }}" class="stretched-link"></a>
                             </div>
                             <?php $date = new DateTimeImmutable($flight->departDay); ?>
                             <h6>Daparment Day: <?php echo date_format($date, 'd M Y'); ?> - Filght Time: {{ $flight->flightTime }} hours</h5>
                                 <?php $date = new DateTimeImmutable($flight->returnDay); ?>
-                            <h6>Return Day: <?php echo date_format($date, 'd M Y'); ?></h6>
+                                <h6>Return Day: <?php echo date_format($date, 'd M Y'); ?></h6>
                         </div>
                     </div>
                 </div>
@@ -72,21 +88,35 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/seachflights" method="POST">
+                @csrf
                 <div class="modal-body">
-                    <h6>From</h6>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="From" aria-label="From"
-                            aria-describedby="basic-addon1">
+                    <h6>Departure</h6>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="floatingSelect" name='departure'>
+                            <option selected value="">Choose Departure</option>
+                            @foreach ($airports as $airport)
+                                <option value={{ $airport->airportName }}>{{ $airport->location }} | {{ $airport->airportCode }}</option>
+                            @endforeach
+                        </select>
+                        <label for="floatingSelect">Departure</label>
                     </div>
-                    <h6>To</h6>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="To" aria-label="To"
-                            aria-describedby="basic-addon1">
+                    <h6>Destination</h6>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="floatingSelect" name='destination'>
+                            <option selected value="">Choose Destination</option>
+                            @foreach ($airports as $airport)
+                                <option value={{ $airport->airportName}}>{{ $airport->location }} | {{ $airport->airportCode}}</option>
+                            @endforeach
+                        </select>
+                        <label for="floatingSelect">Destination</label>
                     </div>
                     <h6>Departure Date</h6>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Departure" aria-label="Departure"
-                            aria-describedby="basic-addon1">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="date" name="departDay" class="form-control border border-dark"
+                                id="floatingInput" placeholder="Departure Day">
+                            <label for="floatingInput">Departure Day</label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

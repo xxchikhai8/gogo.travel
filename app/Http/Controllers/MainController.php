@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Airlines;
+use App\Models\Customers;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,8 @@ class MainController extends Controller
     public function index()
     {
         $flights = DB::table('flights')->paginate(10);
-        return view('index', compact('flights'));
+        $airports = DB::table('airport')->get();
+        return view('index', compact('flights', 'airports'));
     }
 
     public function signin(Request $request)
@@ -54,6 +56,9 @@ class MainController extends Controller
                 $users->role = $request->input('role');
                 $users->state = 'active';
                 $users->save();
+                $customer = new Customers;
+                $customer->username = $request->input('username');
+                $customer->save();
                 return redirect('/')->with('notify', 'signupSuccess');
             } else {
                 $users = new User;
@@ -76,6 +81,11 @@ class MainController extends Controller
         } else {
             return redirect('/')->with('notify', 'confPass');
         }
+    }
+
+    public function searchflights(Request $request)
+    {
+        return view('index', compact('flights'));
     }
 
     public function signout()

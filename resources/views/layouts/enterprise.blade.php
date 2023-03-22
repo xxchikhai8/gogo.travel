@@ -8,6 +8,8 @@
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/js/all.min.js"
         integrity="sha256-+rLIGHyZHBDebNqckORMwB+/ueJuy2RqFcYAYlhjkCs=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"
+        integrity="sha256-5WYg3s9NxGKR2MpEBTy0QMT3Gvgxl3yKjbW4l0CfUUY=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -50,7 +52,7 @@
                                         class="fa-solid fa-user"></i> Hi,
                                     {{ Auth::user()->username }}</a>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><a class="dropdown-item">Account</a></li>
+                                    <li><a href="/management-enterprise-account" class="dropdown-item">Account</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>

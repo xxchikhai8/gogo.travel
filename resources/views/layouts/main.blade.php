@@ -56,7 +56,7 @@
                                         class="fa-solid fa-user"></i> Hi,
                                     {{ Auth::user()->username }}</a>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><a class="dropdown-item">Account</a></li>
+                                    <li><a href="/management-user-account" class="dropdown-item">Account</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -200,5 +200,21 @@
         </div>
     </footer>
     <script src="/assets/js/index.js"></script>
+    <script type="text/javascript">
+        function formatSearch(item) {
+            var selectionText = item.text.split("|");
+            var $returnString = $('<span>' + selectionText[0] + '</br><b>' + selectionText[1] + '</b></br>' + selectionText[2] +'</span>');
+            return $returnString;
+        };
+        function formatSelected(item) {
+            var selectionText = item.text.split("|");
+            var $returnString = $('<span>' + selectionText[0].substring(0, 21) +'</span>');
+            return $returnString;
+        };
+        $('.select2').select2({
+            templateResult: formatSearch,
+            templateSelection: formatSelected
+        });
+    </script>
 </body>
 </html>
