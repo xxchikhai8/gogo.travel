@@ -1,5 +1,3 @@
-@section('layouts.main')
+@extends('layouts.enterprise')
 @section('content')
 @section('title', 'Account Management')
-
-@endsection
