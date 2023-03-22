@@ -134,9 +134,28 @@
     border-color:red !important;
 }
 
+/* Account Management */
+.indexlayouts {
+    border-left: 1px black solid;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
 /* Footer */
 footer {
     margin-top: 15px ;
     background-color: black;
     color: white;
+}
+
+/* Anti-Break Pages */
+body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown),
+html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
+    height: 100% !important;
+    overflow-y: visible !important;
 }
