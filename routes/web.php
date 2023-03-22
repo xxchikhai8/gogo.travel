@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\EnterpriseController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\TicketController;
@@ -34,5 +35,9 @@ Route::group(['Middleware' => ['auth']], function () {
     Route::get('/ticket', [EnterpriseController::class, 'ticketlist']);
     Route::get('/user', [AdminController::class, 'index']);
     Route::get('/airport', [AdminController::class, 'airport']);
+    Route::get('/new-airport', [AdminController::class, 'callNewAirportIndex']);
+    Route::get('/reset/{id}', [AdminController::class, 'reset']);
+    Route::get('/management-user-account', [AccountController::class, 'accountUser']);
+    Route::get('/management-enterprise-account', [AccountController::class, 'accountEnterprise']);
     Route::post('/booking', [TicketController::class, 'booking']);
 });
