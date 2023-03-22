@@ -83,6 +83,6 @@ class EnterpriseController extends Controller
 
     public function dashboard()
     {
-        return view('enterprise.statistics');
+        return view('enterprise.dashboard');
     }
 }

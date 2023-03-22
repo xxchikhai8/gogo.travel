@@ -62,6 +62,5 @@
             <button type="submit" class="btn btn-primary d-block mx-auto">Save Flight</button>
         </form>
     </div>
-
 </div>
 @endsection
