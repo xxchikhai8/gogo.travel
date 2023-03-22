@@ -13,9 +13,10 @@ class Customers extends Model
         'username',
         'cusName',
         'gender',
+        'DoB',
         'phone',
         'email',
-        'DoB',
+
     ];
 
     public $timestamps = false;

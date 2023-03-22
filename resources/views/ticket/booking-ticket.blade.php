@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-center">
         <form action="/booking" method="POST">
             @csrf
-            <a href="" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
+            <a href="/" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
             <h3 class="text-center mb-3 fw-bold">Booking Ticket</h3>
             <div class="form-floating mb-3">
                 <input type="text" name="ticketID" class="form-control border border-dark" id="floatingInput" value="{{$ticketID}}"
