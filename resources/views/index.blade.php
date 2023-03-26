@@ -152,6 +152,7 @@
     <script>
         Swal.fire({
             title: 'Sign In Failed!',
+            text: ' Username or Password is not correct!',
             icon: 'error',
             allowOutsideClick: false,
         });

@@ -159,3 +159,22 @@ html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
     height: 100% !important;
     overflow-y: visible !important;
 }
+
+/* Roll Bars */
+::-webkit-scrollbar {
+    width: 13px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #04243c;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #198754;
+}
