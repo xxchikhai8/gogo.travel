@@ -60,11 +60,12 @@
                     value="{{ $flight->priceTicket }}" placeholder="Ticket Price" readonly>
                 <label for="floatingInput">Ticket Price</label>
             </div>
-            <button type="submit" class="btn btn-primary d-block mx-auto check_signin" data-toggle="tooltip">Booking Flight</button>
+            <button type="submit" class="btn btn-primary d-block mx-auto check_signin" data-toggle="tooltip">Booking
+                Flight</button>
         </form>
     </div>
 </div>
-@if (Auth::check()==true)
+@if (Auth::check() == true)
     <script>
         $('.check_signin').click(function(event) {
             var form = $(this).closest("form");
@@ -87,10 +88,11 @@
         });
     </script>
 @else
-<script type="text/javascript">
-    $(window).on('load', function() {
-        $('#sign-in-modal').modal('show');
-    });
-</script>
+    <script type="text/javascript">
+        $('.check_signin').click(function(event) {
+            event.preventDefault();
+            $('#sign-in-modal').modal('show');
+        });
+    </script>
 @endif
 @endsection

@@ -20,14 +20,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('login');
-Route::get('/history', [MainController::class, 'index']);
+//Route::get('/history', [MainController::class, 'index']);
 Route::post('/sign-up', [MainController::class, 'signup']);
 Route::post('/', [MainController::class, 'signin']);
 Route::get('/booking-ticket/{id}', [TicketController::class, 'index']);
+Route::get('/search', [MainController::class, 'searchflights']);
+Route::post('/search', [MainController::class, 'searchflights']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/sign-out', [MainController::class, 'signout']);
-    Route::get('/management-user-account', [AccountController::class, 'accountUser']);
     Route::post('/booking', [TicketController::class, 'booking']);
+    Route::get('/management-user-account', [AccountController::class, 'accountUser']);
 
     Route::middleware(['admin'])->group(function () {
         Route::get('/user', [AdminController::class, 'index']);
