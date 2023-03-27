@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Airlines;
 use App\Models\Customers;
 use App\Models\User;
+use App\Models\Flights;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -94,16 +95,23 @@ class MainController extends Controller
 
     public function searchflights(Request $request)
     {
-        if ($request->input('departDay')!=null)
-        {
-            $flights = DB::table('flights')->where('departure', $request->input('departure'))->where('destination', $request->input('destination'))->paginate(10);
+        $departure = $request->input('departure');
+        $destination = $request->input('destination');
+        $departDay = $request->input('departDay');
+        if (!$request->filled('departDay')) {
+            $results = DB::table('flights')->where('departure', '=', $departure)->where('destination', '=', $destination)->get();
+        } else {
+            $results = DB::table('flights')->where('departure', '=', $departure)->where('destination', '=', $destination)
+                ->where('departDay', '=', $departDay)->get();
         }
-        else {
-            $flights = DB::table('flights')->where('departure', $request->input('departure'))->where('destination', $request->input('destination'))->where('departDay', $request->input('departDay'))->paginate(10);
+        foreach ($results as $result) {
+            $depart = DB::table('airport')->where('airportCode', $result->departure)->value('airportName');
+            $result->departure = $depart;
+            $desti = DB::table('airport')->where('airportCode', $result->destination)->value('airportName');
+            $result->destination = $desti;
         }
         $airports = DB::table('airport')->get();
-        dd($airports);
-        return view('index', compact('flights', 'airports'));
+        return view('search', compact('results', 'airports', 'departure', 'destination'));
     }
 
     public function signout()

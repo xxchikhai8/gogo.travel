@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-4" id="collapse">
         <div class="shadow-lg rounded-3 border p-3">
-            <form action="/search" method="post">
+            <form action="/search" method="post" role="search">
                 @csrf
                 <h4>Search Flights</h4>
                 <h6>Departure</h6>
@@ -12,8 +12,8 @@
                     <select class="form-select border border-dark" id="floatingSelect" name='departure'>
                         <option selected value="">Choose Departure</option>
                         @foreach ($airports as $airport)
-                            <option value={{ $airport->airportCode }}>{{ $airport->location }} |
-                                {{ $airport->airportCode }}</option>
+                        <option value={{ $airport->airportCode }} @if ($airport->airportCode==$departure) selected @endif >{{ $airport->location }} |
+                            {{ $airport->airportCode }}</option>
                         @endforeach
                     </select>
                     <label for="floatingSelect">Departure</label>
@@ -23,8 +23,8 @@
                     <select class="form-select border border-dark" id="floatingSelect" name='destination'>
                         <option selected value="">Choose Destination</option>
                         @foreach ($airports as $airport)
-                            <option value={{ $airport->airportCode }}>{{ $airport->location }} |
-                                {{ $airport->airportCode }}</option>
+                        <option value={{ $airport->airportCode }} @if ($airport->airportCode==$destination) selected @endif>{{ $airport->location }} |
+                            {{ $airport->airportCode }}</option>
                         @endforeach
                     </select>
                     <label for="floatingSelect">Destination</label>
@@ -32,8 +32,8 @@
                 <h6>Departure Date</h6>
                 <div class="col">
                     <div class="form-floating mb-3">
-                        <input type="date" name="departDay" class="form-control border border-dark"
-                            id="floatingInput" placeholder="Departure Day">
+                        <input type="date" name="departDay" class="form-control border border-dark" id="floatingInput"
+                            placeholder="Departure Day">
                         <label for="floatingInput">Departure Day</label>
                     </div>
                 </div>
@@ -51,31 +51,41 @@
                 <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
             <h4>Ticket List</h4>
-            @foreach ($flights as $flight)
-                <div class="border border-dark p-2 rounded-2 mb-2" id="ticket-border">
-                    <div class="card" id="border-transparent">
-                        <div class="card-body">
-                            <div class="row row-cols-1 row-cols-lg-2">
-                                <div class="col">
-                                    <h6 class="fw-bold">Departure: {{ $flight->departure }}</h6>
-                                    <h6 class="fw-bold">Destination: {{ $flight->destination }}</h6>
-                                </div>
-                                {{-- <div class="col d-none d-lg-flex"></div> --}}
-                                <div class="col text-lg-end text-start">
-                                    <?php $money = $flight->priceTicket;
-                                    setlocale(LC_MONETARY, 'en_US'); ?>
-                                    <h6>Price: $<?php echo number_format($money); ?></h6>
-                                </div>
-                                <a href="booking-ticket/{{ $flight->flightID }}" class="stretched-link"></a>
+            @if ($results->isNotEmpty())
+            @foreach ($results as $result)
+            <div class="border border-dark p-2 rounded-2 mb-2" id="ticket-border">
+                <div class="card" id="border-transparent">
+                    <div class="card-body">
+                        <div class="row row-cols-1 row-cols-lg-2">
+                            <div class="col">
+                                <h6 class="fw-bold">Departure: {{ $result->departure }}</h6>
+                                <h6 class="fw-bold">Destination: {{ $result->destination }}</h6>
                             </div>
-                            <?php $date = new DateTimeImmutable($flight->departDay); ?>
-                            <h6>Daparment Day: <?php echo date_format($date, 'd M Y'); ?> - Filght Time: {{ $flight->flightTime }} hours</h5>
-                                <?php $date = new DateTimeImmutable($flight->returnDay); ?>
-                                <h6>Return Day: <?php echo date_format($date, 'd M Y'); ?></h6>
+                            {{-- <div class="col d-none d-lg-flex"></div> --}}
+                            <div class="col text-lg-end text-start">
+                                <?php $money = $result->priceTicket;
+                                    setlocale(LC_MONETARY, 'en_US'); ?>
+                                <h6>Price: $
+                                    <?php echo number_format($money); ?>
+                                </h6>
+                            </div>
+                            <a href="booking-ticket/{{ $result->flightID }}" class="stretched-link"></a>
                         </div>
+                        <?php $date = new DateTimeImmutable($result->departDay); ?>
+                        <h6>Daparment Day:
+                            <?php echo date_format($date, 'd M Y'); ?> - Filght Time: {{ $result->flightTime }} hours
+                            </h5>
+                            <?php $date = new DateTimeImmutable($result->returnDay); ?>
+                            <h6>Return Day:
+                                <?php echo date_format($date, 'd M Y'); ?>
+                            </h6>
                     </div>
                 </div>
+            </div>
             @endforeach
+            @else
+            <div class="h4 text-center">No result, please try again !</div>
+            @endif
         </div>
     </div>
 </div>
@@ -95,7 +105,8 @@
                         <select class="form-select border border-dark" id="floatingSelect" name='departure'>
                             <option selected value="">Choose Departure</option>
                             @foreach ($airports as $airport)
-                                <option value={{ $airport->airportCode }}>{{ $airport->location }} | {{ $airport->airportCode }}</option>
+                            <option value={{ $airport->airportCode }}>{{ $airport->location }} | {{
+                                $airport->airportCode }}</option>
                             @endforeach
                         </select>
                         <label for="floatingSelect">Departure</label>
@@ -105,7 +116,8 @@
                         <select class="form-select border border-dark" id="floatingSelect" name='destination'>
                             <option selected value="">Choose Destination</option>
                             @foreach ($airports as $airport)
-                                <option value={{ $airport->airportCode}}>{{ $airport->location }} | {{ $airport->airportCode}}</option>
+                            <option value={{ $airport->airportCode}}>{{ $airport->location }} | {{
+                                $airport->airportCode}}</option>
                             @endforeach
                         </select>
                         <label for="floatingSelect">Destination</label>
@@ -128,76 +140,76 @@
     </div>
 </div>
 @if (session('notify') == '0')
-    <script>
-        Swal.fire({
+<script>
+    Swal.fire({
             title: 'Sign In Successfull',
             icon: 'success',
             timer: 2000,
             showConfirmButton: false,
             allowOutsideClick: false,
         });
-    </script>
+</script>
 @endif
 @if (session('notify') == 'active')
-    <script>
-        Swal.fire({
+<script>
+    Swal.fire({
             title: 'Sign In Fail!',
             text: 'You Have Deleted This Account'
             icon: 'error',
             allowOutsideClick: false,
         });
-    </script>
+</script>
 @endif
 @if (session('notify') == '1')
-    <script>
-        Swal.fire({
+<script>
+    Swal.fire({
             title: 'Sign In Failed!',
             text: ' Username or Password is not correct!',
             icon: 'error',
             allowOutsideClick: false,
         });
-    </script>
+</script>
 @endif
 @if (session('notify') == 'exists')
-    <script>
-        Swal.fire({
+<script>
+    Swal.fire({
             title: 'Sign Up Failed!',
             text: 'Username Was Exists!',
             icon: 'error',
             allowOutsideClick: false,
         });
-    </script>
+</script>
 @endif
 @if (session('notify') == 'confPass')
-    <script>
-        Swal.fire({
+<script>
+    Swal.fire({
             title: 'Sign Up Failed!',
             text: 'Password and Confirm Password is not match!',
             icon: 'error',
             allowOutsideClick: false,
         });
-    </script>
+</script>
 @endif
 @if (session('notify') == '2')
-    <script>
-        Swal.fire({
+<script>
+    Swal.fire({
             title: 'Sign Out Successfull',
             icon: 'success',
             timer: 2000,
             showConfirmButton: false,
             allowOutsideClick: false,
         });
-    </script>
+</script>
 @endif
 @if (session('notify') == 'signupSuccess')
-    <script>
-        Swal.fire({
+<script>
+    Swal.fire({
             title: 'Sign Up Successfull',
             icon: 'success',
             timer: 2000,
             showConfirmButton: false,
             allowOutsideClick: false,
         });
-    </script>
+</script>
 @endif
 @endsection
