@@ -4,15 +4,15 @@
 <div class="row">
     <div class="col-4" id="collapse">
         <div class="shadow-lg rounded-3 border p-3">
-            <form action="/seachflights" method="post">
+            <form action="/seach" method="post">
                 @csrf
-                <h4>Search</h4>
+                <h4>Search Flights</h4>
                 <h6>Departure</h6>
                 <div class="form-floating mb-3">
                     <select class="form-select border border-dark" id="floatingSelect" name='departure'>
                         <option selected value="">Choose Departure</option>
                         @foreach ($airports as $airport)
-                            <option value={{ $airport->airportName }}>{{ $airport->location }} |
+                            <option value={{ $airport->airportCode }}>{{ $airport->location }} |
                                 {{ $airport->airportCode }}</option>
                         @endforeach
                     </select>
@@ -23,7 +23,7 @@
                     <select class="form-select border border-dark" id="floatingSelect" name='destination'>
                         <option selected value="">Choose Destination</option>
                         @foreach ($airports as $airport)
-                            <option value={{ $airport->airportName }}>{{ $airport->location }} |
+                            <option value={{ $airport->airportCode }}>{{ $airport->location }} |
                                 {{ $airport->airportCode }}</option>
                         @endforeach
                     </select>
@@ -87,7 +87,7 @@
                 <h1 class="modal-title fs-5 fw-bold" id="ModalLabel">Search Flights</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/seachflights" method="POST">
+            <form action="/search" method="POST">
                 @csrf
                 <div class="modal-body">
                     <h6>Departure</h6>
@@ -95,7 +95,7 @@
                         <select class="form-select border border-dark" id="floatingSelect" name='departure'>
                             <option selected value="">Choose Departure</option>
                             @foreach ($airports as $airport)
-                                <option value={{ $airport->airportName }}>{{ $airport->location }} | {{ $airport->airportCode }}</option>
+                                <option value={{ $airport->airportCode }}>{{ $airport->location }} | {{ $airport->airportCode }}</option>
                             @endforeach
                         </select>
                         <label for="floatingSelect">Departure</label>
@@ -105,7 +105,7 @@
                         <select class="form-select border border-dark" id="floatingSelect" name='destination'>
                             <option selected value="">Choose Destination</option>
                             @foreach ($airports as $airport)
-                                <option value={{ $airport->airportName}}>{{ $airport->location }} | {{ $airport->airportCode}}</option>
+                                <option value={{ $airport->airportCode}}>{{ $airport->location }} | {{ $airport->airportCode}}</option>
                             @endforeach
                         </select>
                         <label for="floatingSelect">Destination</label>

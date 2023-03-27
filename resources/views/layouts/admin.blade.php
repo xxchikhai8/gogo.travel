@@ -20,7 +20,7 @@
 
 <body class="d-flex flex-column h-100">
     <header class="mb-4">
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
             <div class="container-fluid">
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
