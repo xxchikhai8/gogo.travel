@@ -22,21 +22,23 @@
                 <label for="floatingSelect">Plane ID</label>
             </div>
             <div class="form-floating mb-3">
-                <select class="form-select border border-dark" id="floatingSelect" name='planeID'>
-                    <option selected>Choose Departure</option>
-                    @foreach ($planes as $plane)
-                        <option value={{$plane->planeID}} @if($plane->planeID == $flight->planeID) selected @endif>{{$plane->planeID}}</option>
+                <select class="form-select border border-dark" id="floatingSelect" name='departure'>
+                    <option selected value="">Choose Departure</option>
+                    @foreach ($airports as $airport)
+                        <option value={{ $airport->airportCode }} @if($airport->airportCode == $flight->departure) selected @endif>{{ $airport->location }} |
+                            {{ $airport->airportName }}</option>
                     @endforeach
-                  </select>
+                </select>
                 <label for="floatingSelect">Departure</label>
             </div>
             <div class="form-floating mb-3">
-                <select class="form-select border border-dark" id="floatingSelect" name='planeID'>
-                    <option selected>Choose Destination</option>
-                    @foreach ($planes as $plane)
-                        <option value={{$plane->planeID}} @if($plane->planeID == $flight->planeID) selected @endif>{{$plane->planeID}}</option>
+                <select class="form-select border border-dark" id="floatingSelect" name='destination'>
+                    <option selected value="">Choose Destination</option>
+                    @foreach ($airports as $airport)
+                        <option value={{ $airport->airportCode }} @if($airport->airportCode == $flight->destination) selected @endif>{{ $airport->location }} |
+                            {{ $airport->airportName }}</option>
                     @endforeach
-                  </select>
+                </select>
                 <label for="floatingSelect">Destination</label>
             </div>
             <div class="row row-cols-1 row-cols-lg-3">

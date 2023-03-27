@@ -15,6 +15,12 @@ class EnterpriseController extends Controller
         $usernames = Auth::user()->username;
         $airline = DB::table('airlines')->where('username', $usernames)->value('airlineCode');
         $flights = DB::table('flights')->where('planeID', 'LIKE', "%{$airline}%")->paginate(10);
+        foreach ($flights as $flight) {
+            $depart = DB::table('airport')->where('airportCode', $flight->departure)->value('airportName');
+            $flight->departure = $depart;
+            $desti = DB::table('airport')->where('airportCode', $flight->destination)->value('airportName');
+            $flight->destination = $desti;
+        }
         return view('enterprise.index', compact('flights'));
     }
 
@@ -36,7 +42,8 @@ class EnterpriseController extends Controller
         $usernames = Auth::user()->username;
         $airline = DB::table('airlines')->where('username', $usernames)->value('airlineCode');
         $planes = DB::table('plane')->where('airlineCode', $airline)->get();
-        return view('enterprise.new-flight', compact('planes'));
+        $airports = DB::table('airport')->get();
+        return view('enterprise.new-flight', compact('planes', 'airports'));
     }
 
     public function newplane(Request $request)
@@ -51,7 +58,8 @@ class EnterpriseController extends Controller
         $usernames = Auth::user()->username;
         $airline = DB::table('airlines')->where('username', $usernames)->value('airlineCode');
         $planes = DB::table('plane')->where('airlineCode', $airline)->get();
-        return view('enterprise.update-flight', compact('flight', 'planes'));
+        $airports = DB::table('airport')->get();
+        return view('enterprise.update-flight', compact('flight', 'planes', 'airports'));
     }
 
     public function editplane(Request $request, $id)

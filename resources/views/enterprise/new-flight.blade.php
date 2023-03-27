@@ -22,14 +22,24 @@
                 <label for="floatingSelect">Plane ID</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" name="departure" class="form-control border border-dark" id="floatingInput"
-                    placeholder="Departure">
-                <label for="floatingInput">Departure</label>
+                <select class="form-select border border-dark" id="floatingSelect" name='departure'>
+                    <option selected value="">Choose Departure</option>
+                    @foreach ($airports as $airport)
+                        <option value={{ $airport->airportCode }}>{{ $airport->location }} |
+                            {{ $airport->airportCode }}</option>
+                    @endforeach
+                </select>
+                <label for="floatingSelect">Departure</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" name="destination" class="form-control border border-dark" id="floatingInput"
-                    placeholder="Destination">
-                <label for="floatingInput">Destination</label>
+                <select class="form-select border border-dark" id="floatingSelect" name='destination'>
+                    <option selected value="">Choose Destination</option>
+                    @foreach ($airports as $airport)
+                        <option value={{ $airport->airportCode }}>{{ $airport->location }} |
+                            {{ $airport->airportCode }}</option>
+                    @endforeach
+                </select>
+                <label for="floatingSelect">Destination</label>
             </div>
             <div class="row row-cols-1 row-cols-lg-3">
                 <div class="col">

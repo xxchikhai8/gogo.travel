@@ -16,6 +16,12 @@ class MainController extends Controller
     {
         $flights = DB::table('flights')->paginate(10);
         $airports = DB::table('airport')->get();
+        foreach ($flights as $flight) {
+            $depart = DB::table('airport')->where('airportCode', $flight->departure)->value('airportName');
+            $flight->departure = $depart;
+            $desti = DB::table('airport')->where('airportCode', $flight->destination)->value('airportName');
+            $flight->destination = $desti;
+        }
         return view('index', compact('flights', 'airports'));
     }
 
@@ -88,7 +94,16 @@ class MainController extends Controller
 
     public function searchflights(Request $request)
     {
-        return view('index', compact('flights'));
+        if ($request->input('departDay')!=null)
+        {
+            $flights = DB::table('flights')->where('departure', $request->input('departure'))->where('destination', $request->input('destination'))->paginate(10);
+        }
+        else {
+            $flights = DB::table('flights')->where('departure', $request->input('departure'))->where('destination', $request->input('destination'))->where('departDay', $request->input('departDay'))->paginate(10);
+        }
+        $airports = DB::table('airport')->get();
+        dd($airports);
+        return view('index', compact('flights', 'airports'));
     }
 
     public function signout()
