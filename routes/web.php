@@ -19,25 +19,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MainController::class, 'index']);
+Route::get('/', [MainController::class, 'index'])->name('login');
 Route::get('/history', [MainController::class, 'index']);
 Route::post('/sign-up', [MainController::class, 'signup']);
 Route::post('/', [MainController::class, 'signin']);
 Route::get('/booking-ticket/{id}', [TicketController::class, 'index']);
-Route::group(['Middleware' => ['auth']], function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/sign-out', [MainController::class, 'signout']);
-    Route::get('/flight', [EnterpriseController::class, 'index']);
-    Route::get('/new-flight', [EnterpriseController::class, 'newflight']);
-    Route::get('/update-flight/{id}', [EnterpriseController::class, 'editflight']);
-    Route::post('/update-flight/{id}', [EnterpriseController::class, 'updateflight']);
-    Route::get('/dashboard', [EnterpriseController::class, 'dashboard']);
-    Route::get('/planes', [EnterpriseController::class, 'planelist']);
-    Route::get('/ticket', [EnterpriseController::class, 'ticketlist']);
-    Route::get('/user', [AdminController::class, 'index']);
-    Route::get('/airport', [AdminController::class, 'airport']);
-    Route::get('/new-airport', [AdminController::class, 'callNewAirportIndex']);
-    Route::get('/reset/{id}', [AdminController::class, 'reset']);
     Route::get('/management-user-account', [AccountController::class, 'accountUser']);
-    Route::get('/management-enterprise-account', [AccountController::class, 'accountEnterprise']);
     Route::post('/booking', [TicketController::class, 'booking']);
+
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/user', [AdminController::class, 'index']);
+        Route::get('/airport', [AdminController::class, 'airport']);
+        Route::get('/new-airport', [AdminController::class, 'callNewAirportIndex']);
+        Route::get('/reset/{id}', [AdminController::class, 'reset']);
+    });
+    Route::middleware(['enterprise'])->group( function () {
+        Route::get('/flight', [EnterpriseController::class, 'index']);
+        Route::get('/new-flight', [EnterpriseController::class, 'newflight']);
+        Route::get('/save-flight', [EnterpriseController::class, 'saveflight']);
+        Route::post('/save-flight', [EnterpriseController::class, 'saveflight']);
+        Route::get('/update-flight/{id}', [EnterpriseController::class, 'editflight']);
+        Route::post('/update-flight/{id}', [EnterpriseController::class, 'updateflight']);
+        Route::get('/new-plane', [EnterpriseController::class, 'newplane']);
+        Route::get('/save-plane', [EnterpriseController::class, 'saveplane']);
+        Route::post('/save-plane', [EnterpriseController::class, 'saveplane']);
+        Route::get('/update-plane/{id}', [EnterpriseController::class, 'editplane']);
+        Route::post('/update-plane/{id}', [EnterpriseController::class, 'updateplane']);
+        Route::get('/dashboard', [EnterpriseController::class, 'dashboard']);
+        Route::get('/planes', [EnterpriseController::class, 'planelist']);
+        Route::get('/ticket', [EnterpriseController::class, 'ticketlist']);
+        Route::get('/management-enterprise-account', [AccountController::class, 'accountEnterprise']);
+    });
 });
