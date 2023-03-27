@@ -9,7 +9,7 @@
                 <h4>Search</h4>
                 <h6>Departure</h6>
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="floatingSelect" name='departure'>
+                    <select class="form-select border border-dark" id="floatingSelect" name='departure'>
                         <option selected value="">Choose Departure</option>
                         @foreach ($airports as $airport)
                             <option value={{ $airport->airportName }}>{{ $airport->location }} |
@@ -20,7 +20,7 @@
                 </div>
                 <h6>Destination</h6>
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="floatingSelect" name='destination'>
+                    <select class="form-select border border-dark" id="floatingSelect" name='destination'>
                         <option selected value="">Choose Destination</option>
                         @foreach ($airports as $airport)
                             <option value={{ $airport->airportName }}>{{ $airport->location }} |
@@ -92,7 +92,7 @@
                 <div class="modal-body">
                     <h6>Departure</h6>
                     <div class="form-floating mb-3">
-                        <select class="form-select" id="floatingSelect" name='departure'>
+                        <select class="form-select border border-dark" id="floatingSelect" name='departure'>
                             <option selected value="">Choose Departure</option>
                             @foreach ($airports as $airport)
                                 <option value={{ $airport->airportName }}>{{ $airport->location }} | {{ $airport->airportCode }}</option>
@@ -102,7 +102,7 @@
                     </div>
                     <h6>Destination</h6>
                     <div class="form-floating mb-3">
-                        <select class="form-select" id="floatingSelect" name='destination'>
+                        <select class="form-select border border-dark" id="floatingSelect" name='destination'>
                             <option selected value="">Choose Destination</option>
                             @foreach ($airports as $airport)
                                 <option value={{ $airport->airportName}}>{{ $airport->location }} | {{ $airport->airportCode}}</option>

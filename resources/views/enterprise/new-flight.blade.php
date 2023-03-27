@@ -13,7 +13,7 @@
                 <label for="floatingInput">Flight ID</label>
             </div>
             <div class="form-floating mb-3">
-                <select class="form-select" id="floatingSelect" name='planeID'>
+                <select class="form-select border border-dark" id="floatingSelect" name='planeID'>
                     <option selected value="">Choose Plane ID</option>
                     @foreach ($planes as $plane)
                         <option value={{ $plane->planeID }}>{{ $plane->planeID }}</option>

@@ -3,7 +3,7 @@
 @section('title', 'New Airport Information')
 <div class="container">
     <div class="w-75 mx-auto">
-        <form action="/save-flight" method="POST">
+        <form action="/save-airport" method="POST">
             @csrf
             <a href="/airport" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
             <h3 class="text-center mb-3 fw-bold">New Airport</h3>

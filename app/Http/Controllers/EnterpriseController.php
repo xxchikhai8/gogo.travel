@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Flights;
+use App\Models\Plane;
 use Illuminate\Support\Facades\DB;
 
 class EnterpriseController extends Controller
@@ -38,6 +39,11 @@ class EnterpriseController extends Controller
         return view('enterprise.new-flight', compact('planes'));
     }
 
+    public function newplane(Request $request)
+    {
+        return view('enterprise.new-plane');
+    }
+
     public function editflight(Request $request, $id)
     {
         //$flight = Flights::findOrFail($id);
@@ -46,6 +52,12 @@ class EnterpriseController extends Controller
         $airline = DB::table('airlines')->where('username', $usernames)->value('airlineCode');
         $planes = DB::table('plane')->where('airlineCode', $airline)->get();
         return view('enterprise.update-flight', compact('flight', 'planes'));
+    }
+
+    public function editplane(Request $request, $id)
+    {
+        $plane = DB::table('plane')->where('planeID', $id)->first();
+        return view('enterprise.update-plane', compact('plane'));
     }
 
     public function saveflight(Request $request)
@@ -65,6 +77,23 @@ class EnterpriseController extends Controller
         return redirect('/flight')->with('notify', 'newSuccess');
     }
 
+    public function saveplane(Request $request)
+    {
+        $username = Auth::user()->username;
+        $airlineCode = DB::table('airlines')->where('username', $username)->value('airlineCode');
+        if (DB::table('plane')->where('planeID', $request->input('planeID'))->where('airlineCode', $airlineCode)->exists()) {
+            return redirect('/new-plane')->with('notify', 'duplicate');
+        } else {
+            $saveplane = new Plane;
+            $saveplane->airlineCode = $airlineCode;
+            $saveplane->planeID = $request->input('planeID');
+            $saveplane->planeType = $request->input('planeType');
+            $saveplane->save();
+            return redirect('/planes')->with('notify', 'newSuccess');
+        }
+        ;
+    }
+
     public function updateflight(Request $request, $id)
     {
         $saveflight = Flights::findOrFail($id);
@@ -79,6 +108,12 @@ class EnterpriseController extends Controller
         $saveflight->state = $request->input('state');
         $saveflight->update();
         return redirect('/flight')->with('notify', 'updateSuccess');
+    }
+
+    public function updateplane(Request $request, $id)
+    {
+        $saveplane = Plane::findOrFail($id);
+        return view('/plane')->with('notify', 'updateSuccess');
     }
 
     public function dashboard()

@@ -24,6 +24,9 @@ class MainController extends Controller
         $this->validate($request, [
             'username' => 'required',
             'password' => 'required'
+        ], [
+            'username.required' => 'Plese Enter Username',
+            'password.requires' => 'Plase Enter Password'
         ]);
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             if (Auth::user()->role == 'user') {

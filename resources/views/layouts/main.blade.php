@@ -33,11 +33,11 @@
                             class="h2 mb-0">GoGo Travel</span></a>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link headertext" href="/">Home</a>
+                            <a class="nav-link headertext" href="/"><i class="fa-solid fa-home"></i>Home</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link headertext" href="/history">History</a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         @guest
@@ -80,12 +80,12 @@
                             <div class="modal-body">
                                 <div class="form-floating mb-3">
                                     <input type="text" name="username" class="form-control border border-dark"
-                                        id="signinInput" placeholder="Username">
+                                        id="signinInput" placeholder="Username" required oninvalid="this.setCustomValidity('Please Enter Username!')" oninput="setCustomValidity('')">
                                     <label for="signinInput"><i class="fa-solid fa-user"></i> Username</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="password" name="password" class="form-control border border-dark"
-                                        id="signinPassword" placeholder="Password">
+                                        id="signinPassword" placeholder="Password" required oninvalid="this.setCustomValidity('Please Enter Password!')" oninput="setCustomValidity('')">
                                     <label for="signinPassword"><i class="fa-solid fa-unlock-keyhole"></i> Password</label>
                                 </div>
                                 <div>
@@ -211,7 +211,7 @@
             var $returnString = $('<span>' + selectionText[0].substring(0, 21) +'</span>');
             return $returnString;
         };
-        $('.select2').select2({
+        $('.select2').select({
             templateResult: formatSearch,
             templateSelection: formatSelected
         });
