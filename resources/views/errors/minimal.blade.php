@@ -19,9 +19,24 @@
         <div class="display-1"><i class="fa-solid fa-triangle-exclamation text-danger text-muted"></i></div>
         <span class="border-end border-dark pe-2 h3 text-muted">@yield('code')</span>
         <span class="ms-2 h3 text-uppercase text-muted">@yield('message')</span>
-        <div class="d-block text-center mt-3">
-            <a type="button" href="/" class="btn btn-primary text-uppercase"><i class="fa-solid fa-chevron-left me-2"></i>Go to home</a>
-        </div>
+        @if (Auth::check()== false)
+            <div class="d-block text-center mt-3">
+                <a type="button" href="/" class="btn btn-primary text-uppercase"><i class="fa-solid fa-chevron-left me-2"></i>Go to home</a>
+            </div>
+        @elseif (Auth::user()->role == 'admin')
+            <div class="d-block text-center mt-3">
+                <a type="button" href="/user" class="btn btn-primary text-uppercase"><i class="fa-solid fa-chevron-left me-2"></i>Go to home</a>
+            </div>
+        @elseif (Auth::user()->role == 'enterprise')
+            <div class="d-block text-center mt-3">
+                <a type="button" href="/flight" class="btn btn-primary text-uppercase"><i class="fa-solid fa-chevron-left me-2"></i>Go to home</a>
+            </div>
+        @elseif (Auth::user()->role == 'user')
+            <div class="d-block text-center mt-3">
+                <a type="button" href="/" class="btn btn-primary text-uppercase"><i class="fa-solid fa-chevron-left me-2"></i>Go to home</a>
+            </div>
+        @endif
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">

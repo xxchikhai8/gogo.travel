@@ -59,6 +59,10 @@
     text-decoration: underline;
 }
 
+/* Top Navibar */
+header+main {
+    padding-top: 60px;
+}
 /* Modal of Sign In and Sign Up  */
 
 .rolebutton {
@@ -98,6 +102,10 @@
 
 #enterprise {
     display: none;
+}
+
+.modal-backdrop {
+    --bs-backdrop-zindex: auto;
 }
 
 /* Body */
@@ -162,7 +170,7 @@ html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
 
 /* Roll Bars */
 ::-webkit-scrollbar {
-    width: 13px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -173,6 +181,7 @@ html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
     background-color: #04243c;
     border: 2px solid transparent;
     background-clip: content-box;
+    border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
