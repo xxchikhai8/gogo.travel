@@ -50,7 +50,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li> --}}
-                                    <li><a href="/sign-out" class="dropdown-item">Sign out</a></li>
+                                    <li><a href="/sign-out" class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Sign out</a></li>
                                 </ul>
                             </li>
                         @endauth

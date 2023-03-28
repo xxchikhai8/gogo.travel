@@ -72,8 +72,8 @@
                             <a href="booking-ticket/{{ $result->flightID }}" class="stretched-link"></a>
                         </div>
                         <?php $date = new DateTimeImmutable($result->departDay); ?>
-                        <h6>Daparment Day:
-                            <?php echo date_format($date, 'd M Y'); ?> - Filght Time: {{ $result->flightTime }} hours
+                        <h6>Department Day:
+                            <?php echo date_format($date, 'd M Y'); ?> - Flight Time: {{ $result->flightTime }} hours
                             </h5>
                             <?php $date = new DateTimeImmutable($result->returnDay); ?>
                             <h6>Return Day:

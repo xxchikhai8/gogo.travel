@@ -64,6 +64,15 @@
                 Flight</button>
         </form>
     </div>
+    <div class="mt-3"></div>
+    <div class="container-flud border border-dark rounded-3">
+        <div class="bg-info border-dark border-bottom rounded-3 p-2">
+            <h5>Demo</h5>
+        </div>
+        <div>
+            <h6>Demo</h6>
+        </div>
+    </div>
 </div>
 @if (Auth::check() == true)
     <script>

@@ -20,7 +20,10 @@ class TicketController extends Controller
             $ticketID .= rand(0, 9);
         }
         $flight = DB::table('flights')->where('flightID', $id)->first();
-        //$flight = Flights::findOrFail($flightID);
+        $depart = DB::table('airport')->where('airportCode', $flight->departure)->value('airportName');
+        $flight->departure = $depart;
+        $desti = DB::table('airport')->where('airportCode', $flight->destination)->value('airportName');
+        $flight->destination = $desti;
         return view('ticket.booking-ticket', compact('flight', 'ticketID'));
     }
 
