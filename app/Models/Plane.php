@@ -12,6 +12,7 @@ class Plane extends Model
     protected $fillable = [
         'airlineCode',
         'planeID',
+        'planeType',
     ];
 
     public $timestamps = false;

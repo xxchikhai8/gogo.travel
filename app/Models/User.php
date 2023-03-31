@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Airlines;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -33,8 +34,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function username(): HasOne {
+    public function usernameCus(): HasOne {
         return $this->hasOne(Customers::class, 'username');
+    }
+    public function usernameAir(): HasOne {
         return $this->hasOne(Airlines::class, 'username');
     }
 

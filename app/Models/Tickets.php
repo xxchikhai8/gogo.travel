@@ -13,11 +13,14 @@ class Tickets extends Model
         'ticketID',
         'flightID',
         'username',
+        'passengerName',
+        'luggage',
+        'gate',
         'tickerPrice',
-        'tickerNumber',
         'seetClass',
-        'passenger',
+        'seet',
         'tiketType',
+        'bookingDay',
         'state',
     ];
 
