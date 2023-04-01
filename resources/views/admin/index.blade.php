@@ -22,7 +22,7 @@
 @if (session('notify')=='admin')
     <script>
         Swal.fire({
-            title: 'Sign In Successfull!',
+            title: 'Sign In Successful!',
             text: 'Welcome Back Admin.',
             icon: 'success',
             timer: 2000,
@@ -34,7 +34,7 @@
 @if (session('notify')=='resetSuccess')
     <script>
         Swal.fire({
-            title: 'Reset Password Successfull!',
+            title: 'Reset Password Successful!',
             icon: 'success',
             timer: 3000,
             showConfirmButton: false,
