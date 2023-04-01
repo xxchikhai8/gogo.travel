@@ -7,13 +7,13 @@
             <img src="/assets/img/avatar.png" alt="avatar" class="avatar mt-2">
         </div>
         <div class="d-flex justify-content-center mt-3">
-            <h4 style="color:#fff">Hi, {{ Auth::user()->username }}</h4>
+            <h4 style="color:#fff">Hi, {{ $customer->cusName }}</h4>
         </div>
     </div>
     <hr style="background-color:rgb(255, 0, 0);color:rgb(255, 0, 0);height:2px;border-width:0;with:100%">
     <div class="container">
-        <div class="mb-3">
-            <h4>Customer Information</h4>
+        <div class="mb-3 ms-5">
+            <h4 class="ps-5">Customer Information</h4>
         </div>
         <div class="w-75 mx-auto">
             <div>
@@ -28,7 +28,7 @@
                             value='Male'
                         @elseif ($customer->gender==1)
                             value='Female'
-                        @else
+                        @elseif ($customer->gender==2)
                             value=''
                         @endif placeholder="Gender" readonly>
                     <label for="floatingInput">Gender</label>
@@ -48,9 +48,40 @@
                         value="{{$customer->email}}" placeholder="Email" readonly>
                     <label for="floatingInput">Email</label>
                 </div>
-                <button type="submit" class="btn btn-primary d-block mx-auto">Update Information</button>
+                <div class="row row-cols-1 row-cols-lg-2">
+                    <div class="col mt-3 mb-4">
+                        <a href="/change-information" class="btn btn-primary d-block mx-auto">Change Information</a>
+                    </div>
+                    <div class="col mt-3 mb-4">
+                        <a href="/change-password" class="btn btn-primary d-block mx-auto">Change Password</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+@if (session('notify') == 'changeSuccess')
+    <script>
+        Swal.fire({
+            title: 'Save Successful',
+            text: 'Change Information Successful',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+        });
+    </script>
+@endif
+@if (session('notify') == 'changePass')
+    <script>
+        Swal.fire({
+            title: 'Save Successful',
+            text: 'Change Password Successful',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+        });
+    </script>
+@endif
 @endsection
