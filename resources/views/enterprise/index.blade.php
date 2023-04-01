@@ -12,6 +12,7 @@
             <th>Departure</th>
             <th>Destination</th>
             <th>Departure Day</th>
+            <th>Boarding Time</th>
             <th>Flight Time</th>
             <th>Return Day</th>
             <th>Price Ticket</th>
@@ -26,6 +27,8 @@
                 <td>{{$flight->destination}}</td>
                 <?php $date = new DateTimeImmutable($flight->departDay); ?>
                 <td><?php echo date_format($date,'d M Y'); ?></td>
+                <?php $time = new DateTimeImmutable($flight->boardingTime); ?>
+                <td><?php echo date_format($time,'h:i A'); ?></td>
                 <td>{{$flight->flightTime}} Hours</td>
                 <?php $date = new DateTimeImmutable($flight->returnDay); ?>
                 <td><?php echo date_format($date,'d M Y'); ?></td>
@@ -40,7 +43,7 @@
 @if (session('notify') == '0')
     <script>
         Swal.fire({
-            title: 'Sign In Successfull!',
+            title: 'Sign In Successful!',
             icon: 'success',
             text: 'Welcome Back.',
             timer: 2000,

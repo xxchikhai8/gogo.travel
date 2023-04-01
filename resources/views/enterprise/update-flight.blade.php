@@ -41,12 +41,19 @@
                 </select>
                 <label for="floatingSelect">Destination</label>
             </div>
-            <div class="row row-cols-1 row-cols-lg-3">
+            <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col">
                     <div class="form-floating mb-3">
                         <input type="date" name="departDay" class="form-control border border-dark" value="{{$flight->departDay}}"
                             id="floatingInput" placeholder="Departure Day">
                         <label for="floatingInput">Departure Day</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        <input type="time" name="boardingTime" class="form-control border border-dark" value="{{$flight->boardingTime}}"
+                            id="floatingInput" placeholder="Departure Day">
+                        <label for="floatingInput">Boarding Time</label>
                     </div>
                 </div>
                 <div class="col">

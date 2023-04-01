@@ -14,7 +14,7 @@ class EnterpriseController extends Controller
     {
         $usernames = Auth::user()->username;
         $airline = DB::table('airlines')->where('username', $usernames)->value('airlineCode');
-        $flights = DB::table('flights')->where('planeID', 'LIKE', "%{$airline}%")->paginate(10);
+        $flights = DB::table('flights')->where('planeID', 'LIKE', "%{$airline}%")->orderByDesc('id')->paginate(10);
         foreach ($flights as $flight) {
             $depart = DB::table('airport')->where('airportCode', $flight->departure)->value('airportName');
             $flight->departure = $depart;
@@ -51,7 +51,7 @@ class EnterpriseController extends Controller
         return view('enterprise.new-plane');
     }
 
-    public function editflight(Request $request, $id)
+    public function GetUpdateFlight(Request $request, $id)
     {
         //$flight = Flights::findOrFail($id);
         $flight = DB::table('flights')->where('flightID', $id)->first();
@@ -62,7 +62,7 @@ class EnterpriseController extends Controller
         return view('enterprise.update-flight', compact('flight', 'planes', 'airports'));
     }
 
-    public function editplane(Request $request, $id)
+    public function GetUpdatePlane(Request $request, $id)
     {
         $plane = DB::table('plane')->where('planeID', $id)->first();
         return view('enterprise.update-plane', compact('plane'));
@@ -77,6 +77,7 @@ class EnterpriseController extends Controller
         $saveflight->departure = $request->input('departure');
         $saveflight->destination = $request->input('destination');
         $saveflight->departDay = $request->input('departDay');
+        $saveflight->boardingTime = $request->input('boardingTime');
         $saveflight->flightTime = $request->input('flightTime');
         $saveflight->returnDay = $request->input('returnDay');
         $saveflight->priceTicket = $request->input('ticketPrice');
@@ -102,7 +103,7 @@ class EnterpriseController extends Controller
         ;
     }
 
-    public function updateflight(Request $request, $id)
+    public function PostUpdateFlight(Request $request, $id)
     {
         $saveflight = Flights::findOrFail($id);
         $saveflight->flightID = $request->input('flightID');
@@ -110,6 +111,7 @@ class EnterpriseController extends Controller
         $saveflight->departure = $request->input('departure');
         $saveflight->destination = $request->input('destination');
         $saveflight->departDay = $request->input('departDay');
+        $saveflight->boardingTime = $request->input('boardingTime');
         $saveflight->flightTime = $request->input('flightTime');
         $saveflight->returnDay = $request->input('returnDay');
         $saveflight->priceTicket = $request->input('ticketPrice');
@@ -118,7 +120,7 @@ class EnterpriseController extends Controller
         return redirect('/flight')->with('notify', 'updateSuccess');
     }
 
-    public function updateplane(Request $request, $id)
+    public function PostUpdatePlane(Request $request, $id)
     {
         $saveplane = Plane::findOrFail($id);
         return view('/plane')->with('notify', 'updateSuccess');
