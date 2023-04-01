@@ -1,78 +1,190 @@
 @extends('layouts.main')
 @section('content')
 @section('title', 'Ticket Booking')
-<div class="container">
-    <div class="d-flex justify-content-center">
-        <form action="/booking" method="POST">
-            @csrf
-            <a href="/" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
-            <h3 class="text-center mb-3 fw-bold">Booking Ticket</h3>
-            <div class="form-floating mb-3">
-                <input type="text" name="ticketID" class="form-control border border-dark" id="floatingInput"
-                    value="{{ $ticketID }}" placeholder="Ticket ID" readonly>
-                <label for="floatingInput">Ticket ID</label>
+<div class="container mb-3">
+    <a href="/" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
+</div>
+<div class="w-100 mx-auto">
+    <form action="/booking" method="POST">
+        @csrf
+        <div class="container rounded-4" style="box-shadow: 10px 10px 5px rgba(0,0,0,.15);">
+            <div class="row p-2 bg-warning text-dark" style="border-radius:1rem 1rem 0px 0px;">
+                <div class="col-4 fw-bold">
+                    BOARDING PASS
+                </div>
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" name="flightID" class="form-control border border-dark" id="floatingInput"
-                    value="{{ $flight->flightID }}" placeholder="Flight ID" readonly>
-                <label for="floatingInput">Flight ID</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" name="departure" class="form-control border border-dark" id="floatingInput"
-                    value="{{ $flight->departure }}" placeholder="Departure" readonly>
-                <label for="floatingInput">Departure</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" name="destination" class="form-control border border-dark" id="floatingInput"
-                    value="{{ $flight->destination }}" placeholder="Destination" readonly>
-                <label for="floatingInput">Destination</label>
-            </div>
-            <div class="row row-cols-1 row-cols-lg-3">
+            <div class="row p-2 border-start border-end">
                 <div class="col">
-                    <div class="form-floating mb-3">
-                        <input type="date" name="departDay" class="form-control border border-dark"
-                            value="{{ $flight->departDay }}" id="floatingInput" placeholder="Departure Day" readonly>
-                        <label for="floatingInput">Departure Day</label>
+                    <div class="row">
+                        <div class="col fw-bold">
+                            Ticket No:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" name="ticketID" value="{{ $ticketID }}" readonly class="form-control-plaintext">
+                        </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-floating mb-3">
-                        <input type="date" name="returnDay" class="form-control border border-dark"
-                            value="{{ $flight->returnDay }}" id="floatingInput" placeholder="Return Day" readonly>
-                        <label for="floatingInput">Return Day</label>
+                    <div class="row">
+                        <div class="col fw-bold">
+                            Flight No:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" name="flightID" value="{{ $flight->flightID }}" readonly class="form-control-plaintext">
+                        </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-floating mb-3">
-                        <input type="text" name="flightTime" class="form-control border border-dark"
-                            value="{{ $flight->flightTime }}" id="floatingInput" placeholder="Flight Time" readonly>
-                        <label for="floatingInput">Flight Time (Hours)</label>
+                    <div class="row">
+                        <div class="col fw-bold">
+                            Carrier:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mt-1">
+                            {{ $carrier }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col fw-bold">
+                            Date:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mt-1">
+                            <?php
+                            $date = new DateTimeImmutable($flight->departDay);
+                            echo date_format($date, 'd M Y');
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" name="ticketPrice" class="form-control border border-dark" id="floatingInput"
-                    value="$ {{ $flight->priceTicket }}" placeholder="Ticket Price" readonly>
-                <label for="floatingInput"> Ticket Price</label>
+            <div class="row p-2 border-start border-end">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col fw-bold">
+                            From:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ $flight->departure }} ({{ $departCode }})
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ $departlocation }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col fw-bold">
+                            Luggage:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" name="luggage" value="{{ $luggage }}" readonly class="form-control-plaintext">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col fw-bold">
+                            Gate:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" name="gate" value="{{ $gate }}" readonly class="form-control-plaintext">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" name="a" class="form-control border border-dark" id="floatingInput"
-                    value="{{ $flight->priceTicket }}" placeholder="Ticket Price" readonly>
-                <label for="floatingInput">Ticket Price</label>
+            <div class="row p-2 border-start border-end">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col fw-bold">
+                            To:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ $flight->destination }} ({{ $destiCode }})
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ $destilocation }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col fw-bold">
+                            Boarding Time:
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <?php
+                            $time = new DateTimeImmutable($flight->boardingTime);
+                            echo date_format($time, 'h:i A');
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col fw-bold">
+                            Price:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" name="ticketPrice" value="$ {{$flight->priceTicket}}" readonly class="form-control-plaintext">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary d-block mx-auto check_signin" data-toggle="tooltip">Booking
-                Flight</button>
-        </form>
-    </div>
-    <div class="mt-3"></div>
-    <div class="container-flud border border-dark rounded-3">
-        <div class="bg-info border-dark border-bottom rounded-3 p-2">
-            <h5>Demo</h5>
+            <div class="row p-2 bg-warning text-dark" style="border-radius:0px 0px 1rem 1rem;"></div>
         </div>
-        <div>
-            <h6>Demo</h6>
+        <div class="w-75 mx-auto mt-5">
+            <h3 class="text-center mb-3 fw-bold">Passenger Information</h3>
+            <div class="form-floating mb-3">
+                <input type="text" name="passengerName" class="form-control border border-dark" id="floatingInput"
+                    placeholder="Passenger Name">
+                <label for="floatingInput">Passenger Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select border border-dark" id="floatingSelect" name='seetClass'>
+                    <option selected value="Economy"> Economy</option>
+                    <option value="Premium Economy"> Premium Economy</option>
+                    <option value="Bussiness"> Bussiness</option>
+                </select>
+                <label for="floatingInput">Seet Class</label>
+            </div>
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="reDay" value="return">
+                <label class="form-check-label" for="reDay">Return</label>
+            </div>
+            <div class="form-floating mb-3" id="returnDay">
+                <input type="date" name="returnDay" class="form-control border border-dark" id="floatingInput" value="{{$flight->returnDay}}"
+                    placeholder="Return Day" readonly>
+                <label for="floatingInput">Return Day</label>
+            </div>
         </div>
-    </div>
+        <button type="submit" class="btn btn-primary d-block mx-auto check_signin" data-toggle="tooltip">Booking
+            Flight</button>
+    </form>
 </div>
 @if (Auth::check() == true)
     <script>
