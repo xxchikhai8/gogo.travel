@@ -142,7 +142,7 @@
 @if (session('notify') == '0')
 <script>
     Swal.fire({
-            title: 'Sign In Successfull',
+            title: 'Sign In Successful',
             icon: 'success',
             timer: 2000,
             showConfirmButton: false,
@@ -193,7 +193,7 @@
 @if (session('notify') == '2')
 <script>
     Swal.fire({
-            title: 'Sign Out Successfull',
+            title: 'Sign Out Successful',
             icon: 'success',
             timer: 2000,
             showConfirmButton: false,
@@ -204,7 +204,7 @@
 @if (session('notify') == 'signupSuccess')
 <script>
     Swal.fire({
-            title: 'Sign Up Successfull',
+            title: 'Sign Up Successful',
             icon: 'success',
             timer: 2000,
             showConfirmButton: false,

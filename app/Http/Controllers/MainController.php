@@ -15,7 +15,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        $flights = DB::table('flights')->paginate(10);
+        $flights = DB::table('flights')->orderByDesc('id')->paginate(10);
         $airports = DB::table('airport')->get();
         foreach ($flights as $flight) {
             $depart = DB::table('airport')->where('airportCode', $flight->departure)->value('airportName');

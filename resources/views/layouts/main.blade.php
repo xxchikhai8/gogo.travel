@@ -56,7 +56,8 @@
                                         class="fa-solid fa-user"></i> Hi,
                                     {{ Auth::user()->username }}</a>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><a href="/management-user-account" class="dropdown-item">Account</a></li>
+                                    <li><a href="/management-user-account" class="dropdown-item mb-2">Account</a></li>
+                                    <li><a href="/ticket-booked" class="dropdown-item mb-2">Ticket</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -118,11 +119,9 @@
                                 <div class="center">
                                     <div class="btn-group rolebutton" role="group"
                                         aria-label="Basic radio toggle button group">
-                                        <input type="radio" class="btn-check" name="role" value="user"
-                                            id="btnradio1" autocomplete="off" checked>
+                                        <input type="radio" class="btn-check" name="role" value="user" id="btnradio1" autocomplete="off" checked>
                                         <label class="btn btn-outline-primary" for="btnradio1">Customer</label>
-                                        <input type="radio" class="btn-check" name="role" value="enterprise"
-                                            id="btnradio2" autocomplete="off">
+                                        <input type="radio" class="btn-check" name="role" value="enterprise" id="btnradio2" autocomplete="off">
                                         <label class="btn btn-outline-primary" for="btnradio2">Enterprise</label>
                                     </div>
                                 </div>
@@ -135,38 +134,32 @@
                                         <label for="floatingInput"><i class="fa-solid fa-user"></i> Username</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="password"
-                                            class="form-control border border-dark" id="floatingPassword"
+                                        <input type="password" name="password" class="form-control border border-dark" id="floatingPassword"
                                             placeholder="Password">
                                         <label for="floatingPassword"><i class="fa-solid fa-unlock-keyhole"></i> Password</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="confpassword"
-                                            class="form-control border border-dark" id="floatingPassword"
+                                        <input type="password" name="confpassword" class="form-control border border-dark" id="floatingPassword"
                                             placeholder="Confirm Password">
                                         <label for="floatingPassword"><i class="fa-solid fa-unlock-keyhole"></i> Confirm Password</label>
                                     </div>
                                     <div class="form-floating mb-3" id="enterprise">
-                                        <input type="text" name="enterpriseNum"
-                                            class="form-control border border-dark" id="enterpriseNumber"
+                                        <input type="text" name="enterpriseNum" class="form-control border border-dark" id="enterpriseNumber"
                                             placeholder="Enterprise Number">
                                         <label id="enterpriseNumber" for="enterprise"><i class="fa-solid fa-building"></i> Enterprise Number</label>
                                     </div>
                                     <div class="form-floating mb-3" id="enterprise">
-                                        <input type="text" name="airlineName"
-                                            class="form-control border border-dark" id="enterpriseName"
+                                        <input type="text" name="airlineName" class="form-control border border-dark" id="enterpriseName"
                                             placeholder="Airline Name">
                                         <label id="enterpriseName" for="enterprise"><i class="fa-solid fa-plane"></i> Airline Name</label>
                                     </div>
                                     <div class="form-floating mb-3" id="enterprise">
-                                        <input type="text" name="airlineCode"
-                                            class="form-control border border-dark" id="enterpriseCode"
+                                        <input type="text" name="airlineCode" class="form-control border border-dark" id="enterpriseCode"
                                             placeholder="Airline Code">
                                         <label id="enterpriseCode" for="enterprise"><i class="fa-solid fa-barcode"></i> Airline Code</label>
                                     </div>
                                     <div class="form-floating mb-3" id="enterprise">
-                                        <input type="text" name="nation"
-                                            class="form-control border border-dark" id="Nation"
+                                        <input type="text" name="nation" class="form-control border border-dark" id="Nation"
                                             placeholder="Nation">
                                         <label id="Nation" for="enterprise"><i class="fa-solid fa-globe"></i> Nation</label>
                                     </div>
@@ -215,6 +208,15 @@
             templateResult: formatSearch,
             templateSelection: formatSelected
         });
+        $("#btnradio2").click(function() {
+            Swal.fire({
+                title: 'Warning! Check Information Before Sign Up',
+                text: 'The information you enter will be saved forever and cannot be changed! Please check carefully before Signing Up',
+                icon: 'warning',
+                scrollbarPadding: false,
+                allowOutsideClick: false,
+            })
+        })
     </script>
 </body>
 </html>

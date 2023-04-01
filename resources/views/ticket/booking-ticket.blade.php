@@ -176,7 +176,7 @@
                 <input class="form-check-input" type="checkbox" role="switch" id="reDay" value="return">
                 <label class="form-check-label" for="reDay">Return</label>
             </div>
-            <div class="form-floating mb-3" id="returnDay">
+            <div class="form-floating mb-3" id="return" style="display: none">
                 <input type="date" name="returnDay" class="form-control border border-dark" id="floatingInput" value="{{$flight->returnDay}}"
                     placeholder="Return Day" readonly>
                 <label for="floatingInput">Return Day</label>

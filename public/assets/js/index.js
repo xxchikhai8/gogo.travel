@@ -17,6 +17,12 @@ $("input[type=radio]").on('change', function () {
     }
 });
 
+$(function() {
+    $("#reDay").on("click",function() {
+      $("#return").toggle(this.checked);
+    });
+});
+
 var x = window.matchMedia("(max-width: 992px)")
 collapses(x)
 x.addListener(collapses)
