@@ -28,7 +28,8 @@ Route::get('/search', [MainController::class, 'searchflights']);
 Route::post('/search', [MainController::class, 'searchflights']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/sign-out', [MainController::class, 'signout']);
-    Route::get('/ticket-booked', [TicketController::class, 'ticketbooked']);
+    Route::get('/ticket-history', [TicketController::class, 'ticketList']);
+    Route::get('/ticket-detail/{id}', [TicketController::class, 'ticketDetail']);
     Route::post('/booking', [TicketController::class, 'booking']);
     Route::get('/management-user-account', [AccountController::class, 'accountUser']);
     Route::get('/change-information', [AccountController::class, 'GetUpdateInformation']);
