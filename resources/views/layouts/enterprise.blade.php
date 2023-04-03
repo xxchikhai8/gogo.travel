@@ -42,7 +42,7 @@
                             <a class="nav-link headertext" href="/ticket">Ticket</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link headertext" href="/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                            <a class="nav-link headertext" href="/dashboard?year={{$currentYear}}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -52,7 +52,7 @@
                                         class="fa-solid fa-user"></i> Hi,
                                     {{ Auth::user()->username }}</a>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><a href="/management-enterprise-account" class="dropdown-item">Account</a></li>
+                                    <li><a href="/management/account/enterprise" class="dropdown-item">Account</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>

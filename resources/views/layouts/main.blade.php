@@ -56,12 +56,17 @@
                                         class="fa-solid fa-user"></i> Hi,
                                     {{ Auth::user()->username }}</a>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><a href="/management-user-account" class="dropdown-item mb-2">Account</a></li>
-                                    <li><a href="/ticket-history" class="dropdown-item mb-2">Ticket History</a></li>
+                                    <li><a href="/management/account/user-" class="dropdown-item mb-2">Account</a></li>
+                                    <li><a href="/ticket/history" class="dropdown-item mb-2">Ticket History</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a href="/sign-out" class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Sign out</a></li>
+                                    <li>
+                                        <form action="/sign-out" method="get">
+                                            <input type="hidden" name="current_page" value="{{Request::getRequestUri()}}">
+                                            <button type="submit" class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                         @endauth
@@ -132,38 +137,38 @@
                                 <div>
                                     <div class="form-floating mb-3">
                                         <input type="text" name="username" class="form-control border border-dark"
-                                            id="floatingInput" placeholder="Username">
+                                            id="floatingInput" placeholder="Username" required oninvalid="this.setCustomValidity('Please Enter Username!')" oninput="setCustomValidity('')">
                                         <label for="floatingInput"><i class="fa-solid fa-user"></i> Username</label>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input type="password" name="password" class="form-control border border-dark" id="floatingPassword"
-                                            placeholder="Password">
+                                            placeholder="Password" required oninvalid="this.setCustomValidity('Please Enter Password!')" oninput="setCustomValidity('')">
                                         <label for="floatingPassword"><i class="fa-solid fa-unlock-keyhole"></i> Password</label>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input type="password" name="confpassword" class="form-control border border-dark" id="floatingPassword"
-                                            placeholder="Confirm Password">
+                                            placeholder="Confirm Password" required oninvalid="this.setCustomValidity('Please Enter Confirm Password!')" oninput="setCustomValidity('')">
                                         <label for="floatingPassword"><i class="fa-solid fa-unlock-keyhole"></i> Confirm Password</label>
                                     </div>
                                     <div class="form-floating mb-3" id="enterprise">
-                                        <input type="text" name="enterpriseNum" class="form-control border border-dark" id="enterpriseNumber"
-                                            placeholder="Enterprise Number">
-                                        <label id="enterpriseNumber" for="enterprise"><i class="fa-solid fa-building"></i> Enterprise Number</label>
+                                        <input type="text" name="enterpriseNum" class="form-control border border-dark" id="enterpri"
+                                            placeholder="Enterprise Number" oninvalid="this.setCustomValidity('Please Enter Enterprise Number!')" oninput="setCustomValidity('')">
+                                        <label for="enterprise"><i class="fa-solid fa-building"></i> Enterprise Number</label>
                                     </div>
                                     <div class="form-floating mb-3" id="enterprise">
-                                        <input type="text" name="airlineName" class="form-control border border-dark" id="enterpriseName"
-                                            placeholder="Airline Name">
-                                        <label id="enterpriseName" for="enterprise"><i class="fa-solid fa-plane"></i> Airline Name</label>
+                                        <input type="text" name="airlineName" class="form-control border border-dark" id="enterpri1"
+                                            placeholder="Airline Name" oninvalid="this.setCustomValidity('Please Enter Airline Name!')" oninput="setCustomValidity('')" >
+                                        <label for="enterprise"><i class="fa-solid fa-plane"></i> Airline Name</label>
                                     </div>
                                     <div class="form-floating mb-3" id="enterprise">
-                                        <input type="text" name="airlineCode" class="form-control border border-dark" id="enterpriseCode"
-                                            placeholder="Airline Code">
-                                        <label id="enterpriseCode" for="enterprise"><i class="fa-solid fa-barcode"></i> Airline Code</label>
+                                        <input type="text" name="airlineCode" class="form-control border border-dark" id="enterpri2"
+                                            placeholder="Airline Code" oninvalid="this.setCustomValidity('Please Enter Airline Code!')" oninput="setCustomValidity('')">
+                                        <label for="enterprise"><i class="fa-solid fa-barcode"></i> Airline Code</label>
                                     </div>
                                     <div class="form-floating mb-3" id="enterprise">
-                                        <input type="text" name="nation" class="form-control border border-dark" id="Nation"
-                                            placeholder="Nation">
-                                        <label id="Nation" for="enterprise"><i class="fa-solid fa-globe"></i> Nation</label>
+                                        <input type="text" name="nation" class="form-control border border-dark" id="enterpri3"
+                                            placeholder="Nation" oninvalid="this.setCustomValidity('Please Enter Nation!')" oninput="setCustomValidity('')">
+                                        <label for="enterprise"><i class="fa-solid fa-globe"></i> Nation</label>
                                     </div>
                                 </div>
                             </div>
@@ -196,20 +201,6 @@
     </footer>
     <script src="/assets/js/index.js"></script>
     <script type="text/javascript">
-        function formatSearch(item) {
-            var selectionText = item.text.split("|");
-            var $returnString = $('<span>' + selectionText[0] + '</br><b>' + selectionText[1] + '</b></br>' + selectionText[2] +'</span>');
-            return $returnString;
-        };
-        function formatSelected(item) {
-            var selectionText = item.text.split("|");
-            var $returnString = $('<span>' + selectionText[0].substring(0, 21) +'</span>');
-            return $returnString;
-        };
-        $('.select2').select({
-            templateResult: formatSearch,
-            templateSelection: formatSelected
-        });
         $("#btnradio2").click(function() {
             Swal.fire({
                 title: 'Warning! Check Information Before Sign Up',
