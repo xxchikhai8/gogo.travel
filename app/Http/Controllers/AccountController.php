@@ -42,7 +42,7 @@ class AccountController extends Controller
         $saveCustomer->phone = $request->input('phone');
         $saveCustomer->email = $request->input('email');
         $saveCustomer->update();
-        return redirect('/management-user-account')->with('notify', 'changeSuccess');
+        return redirect('/management/account/user')->with('notify', 'changeSuccess');
     }
 
     public function GetChangePassword() {
@@ -56,14 +56,14 @@ class AccountController extends Controller
             $user->password = $hash;
             $user->update();
             if (Auth::user()->role == 'user') {
-                return redirect('/management-user-account')->with('notify', 'changePass');
+                return redirect('//management/account/user')->with('notify', 'changePass');
             }
             else {
-                return redirect('/management-enterprise-account')->with('notify', 'changePass');
+                return redirect('/management/account/enterprise')->with('notify', 'changePass');
             }
         }
         else {
-            return redirect('/change-password')->with('notify', 'match');
+            return redirect('/password/changes')->with('notify', 'match');
         }
     }
 }

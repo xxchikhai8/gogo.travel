@@ -4,8 +4,8 @@
 <div class="container">
     <div class="w-75 mx-auto">
         @if (Auth::user()->role == 'user')
-            <a href="/management-user-account" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left"></i> Back</a>
-            <form action="/changes-password" method="POST">
+            <a href="/management/account/user" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left"></i> Back</a>
+            <form action="/password/change/save" method="POST">
                 @csrf
                 <h3 class="text-center mb-3 fw-bold">Change Password</h3>
                 <div class="form-floating mb-3">
@@ -23,9 +23,9 @@
                 </div>
             </form>
         @else
-            <a href="/management-enterprise-account" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i>
+            <a href="/management/account/enterprise" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i>
                 Back</a>
-            <form action="/changeds-password" method="POST">
+            <form action="/password/changes/save" method="POST">
                 @csrf
                 <h3 class="text-center mb-3 fw-bold">Change Password</h3>
                 <div class="form-floating mb-3">

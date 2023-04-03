@@ -7,7 +7,7 @@
             <img src="/assets/img/avatar.png" alt="avatar" class="avatar mt-2">
         </div>
         <div class="d-flex justify-content-center mt-3">
-            <h4 style="color:#fff">Hi, {{ $enterprise->airlineName }} Airline</h4>
+            <h4 style="color:#fff">Hi, {{ $enterprise->airlineName }}</h4>
         </div>
     </div>
     <hr style="background-color:rgb(255, 0, 0);color:rgb(255, 0, 0);height:2px;border-width:0;with:100%">
@@ -42,13 +42,8 @@
                         value="{{$enterprise->Nation}}" placeholder="Nation" readonly>
                     <label for="floatingInput">Nation</label>
                 </div>
-                <div class="row row-cols-1 row-cols-lg-2">
-                    <div class="col mt-3 mb-4">
-                        <a href="/change-information" class="btn btn-primary d-block mx-auto">Change Information</a>
-                    </div>
-                    <div class="col mt-3 mb-4">
-                        <a href="/changed-password" class="btn btn-primary d-block mx-auto">Change Password</a>
-                    </div>
+                <div class=" mt-3 mb-4">
+                    <a href="/password/changes" class="btn btn-primary d-block mx-auto w-25">Change Password</a>
                 </div>
             </div>
         </div>

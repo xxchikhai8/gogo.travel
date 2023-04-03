@@ -4,9 +4,9 @@
 <div class="container">
     <div class="w-75 mx-auto">
         <div class="mb-3">
-            <a href="/management-user-account" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
+            <a href="/management/account/user" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
         </div>
-        <form action="/changes-information" method="post">
+        <form action="/information/changes/save" method="post">
             @csrf
             <h3 class="text-center mb-3 fw-bold">Change Information</h3>
             <div class="form-floating mb-3">

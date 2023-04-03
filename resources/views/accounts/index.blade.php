@@ -50,16 +50,17 @@
                 </div>
                 <div class="row row-cols-1 row-cols-lg-2">
                     <div class="col mt-3 mb-4">
-                        <a href="/change-information" class="btn btn-primary d-block mx-auto">Change Information</a>
+                        <a href="/information/changes" class="btn btn-primary d-block mx-auto w-75">Change Information</a>
                     </div>
                     <div class="col mt-3 mb-4">
-                        <a href="/change-password" class="btn btn-primary d-block mx-auto">Change Password</a>
+                        <a href="/password/change" class="btn btn-primary d-block mx-auto w-75">Change Password</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @if (session('notify') == 'changeSuccess')
     <script>
         Swal.fire({
