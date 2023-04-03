@@ -76,6 +76,9 @@
                     </div>
                 </div>
             @endforeach
+            <div class="d-flex justify-content-center mt-3">
+                {{ $flights->links() }}
+            </div>
         </div>
     </div>
 </div>

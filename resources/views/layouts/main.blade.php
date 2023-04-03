@@ -57,7 +57,7 @@
                                     {{ Auth::user()->username }}</a>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
                                     <li><a href="/management-user-account" class="dropdown-item mb-2">Account</a></li>
-                                    <li><a href="/ticket-booked" class="dropdown-item mb-2">Ticket</a></li>
+                                    <li><a href="/ticket-history" class="dropdown-item mb-2">Ticket History</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -98,7 +98,8 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary buttons"
                                     data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary button">Sign In</button>
+                                {{-- <button type="submit" class="btn btn-primary button">Sign In</button> --}}
+                                <a href="{{ route('signin', ['redirect_to' => url()->current()]) }}">Đăng nhập</a>
                             </div>
                         </form>
                     </div>

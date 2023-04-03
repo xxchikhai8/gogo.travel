@@ -15,7 +15,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        $flights = DB::table('flights')->orderByDesc('id')->paginate(10);
+        $flights = DB::table('flights')->orderByDesc('id')->paginate(6);
         $airports = DB::table('airport')->get();
         foreach ($flights as $flight) {
             $depart = DB::table('airport')->where('airportCode', $flight->departure)->value('airportName');
@@ -28,6 +28,7 @@ class MainController extends Controller
 
     public function signin(Request $request)
     {
+
         $this->validate($request, [
             'username' => 'required',
             'password' => 'required'
@@ -37,10 +38,12 @@ class MainController extends Controller
         ]);
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             if (Auth::user()->role == 'user') {
+                session()->put('redirect', url()->current());
+                $url = session()->get('redirect');
                 if (Auth::user()->state == 'not active') {
-                    return redirect('/')->with('notify', 'active');
+                    return redirect()->with('notify', 'active');
                 } else {
-                    return redirect('/')->with('notify', '0');
+                    return redirect($url)->with('notify', '0');
                 }
             } else if (Auth::user()->role == 'enterprise') {
                 return redirect('/flight')->with('notify', '0');
