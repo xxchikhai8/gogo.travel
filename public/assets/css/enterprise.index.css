@@ -29,6 +29,16 @@ header+main {
     padding-top: 60px;
 }
 
+/* Pagination */
+.pagination {
+    --bs-pagination-color: rgb(33, 37, 41);
+    --bs-pagination-hover-color: rgb(33, 37, 41);
+    --bs-pagination-focus-color: rgb(33, 37, 41);
+    --bs-pagination-active-bg: #ffc107;
+    --bs-pagination-active-color: rgb(33, 37, 41);
+    --bs-pagination-active-border-color: #ffc107;
+}
+
 /* Roll Bars */
 ::-webkit-scrollbar {
     width: 10px;
