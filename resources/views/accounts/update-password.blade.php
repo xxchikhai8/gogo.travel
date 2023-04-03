@@ -39,7 +39,7 @@
                     <label for="floatingInput">Confirm Password</label>
                 </div>
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-primary d-block mx-auto w-25">Save Change</button>
+                    <button type="submit" class="btn btn-primary d-block mx-auto w-25 show_confirm">Save Change</button>
                 </div>
             </form>
         @endif
@@ -55,4 +55,26 @@
         });
     </script>
 @endif
+<script>
+    $('.show_confirm').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you want to Change Password?',
+            text: 'This operation will modify the Password! Are you sure you want to proceed?',
+            icon: 'question',
+            showCancelButton: true,
+            scrollbarPadding: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+</script>
 @endsection
