@@ -79,6 +79,8 @@
                         <form action="/" method="POST">
                             @csrf
                             <div class="modal-body">
+                                {{-- Get Current Page --}}
+                                <input type="hidden" name="current_page" value="{{Request::getRequestUri()}}">
                                 <div class="form-floating mb-3">
                                     <input type="text" name="username" class="form-control border border-dark"
                                         id="signinInput" placeholder="Username" required oninvalid="this.setCustomValidity('Please Enter Username!')" oninput="setCustomValidity('')">
@@ -98,8 +100,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary buttons"
                                     data-bs-dismiss="modal">Close</button>
-                                {{-- <button type="submit" class="btn btn-primary button">Sign In</button> --}}
-                                <a href="{{ route('signin', ['redirect_to' => url()->current()]) }}">Đăng nhập</a>
+                                <button type="submit" class="btn btn-primary button">Sign In</button>
                             </div>
                         </form>
                     </div>
