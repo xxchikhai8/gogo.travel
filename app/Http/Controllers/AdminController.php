@@ -25,6 +25,15 @@ class AdminController extends Controller
     }
 
     public function saveNewAirport(Request $request) {
+        $this->validate($request, [
+            'airportCode'=>'required',
+            'airportName'=>'required',
+            'location'=>'required',
+        ],[
+            'airportCode.required' => 'Please Enter Airport Code',
+            'airportName.required' => 'Please Choose Airport Name',
+            'location.required' => 'Please Choose Location of Airport',
+        ]);
         $saveAirport = new Airports;
         $saveAirport->airportCode = $request->input('airportCode');
         $saveAirport->airportName = $request->input('airportName');
@@ -54,6 +63,15 @@ class AdminController extends Controller
     }
 
     public function postUpdateAirport(Request $request, $id) {
+        $this->validate($request, [
+            'airportCode'=>'required',
+            'airportName'=>'required',
+            'location'=>'required',
+        ],[
+            'airportCode.required' => 'Please Enter Airport Code',
+            'airportName.required' => 'Please Choose Airport Name',
+            'location.required' => 'Please Choose Location of Airport',
+        ]);
         $airport = Airports::where('airportCode', $id)->first();
         $airport->airportCode = $request->input('airportCode');
         $airport->airportName = $request->input('airportName');

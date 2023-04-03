@@ -112,6 +112,13 @@ class EnterpriseController extends Controller
 
     public function saveplane(Request $request)
     {
+        $this->validate($request, [
+            'planeID'=>'required',
+            'planeType'=>'required',
+        ],[
+            'planeID.required' => 'Please Enter Plane No',
+            'planeType.required' => 'Please Choose Plane Type',
+        ]);
         $username = Auth::user()->username;
         $airlineCode = DB::table('airlines')->where('username', $username)->value('airlineCode');
         if (DB::table('plane')->where('planeID', $request->input('planeID'))->where('airlineCode', $airlineCode)->exists()) {
@@ -129,6 +136,27 @@ class EnterpriseController extends Controller
 
     public function PostUpdateFlight(Request $request, $id)
     {
+        $this->validate($request, [
+            'flightID'=>'required',
+            'planeID'=>'required',
+            'departure'=>'required',
+            'destination'=>'required',
+            'departDay'=>'required',
+            'boardingTime'=>'required',
+            'flightTime'=>'required',
+            'returnDay'=>'required',
+            'ticketPrice'=>'required',
+        ],[
+            'flightID.required' => 'Please Enter Flight No',
+            'planeID.required' => 'Please Choose Plane No',
+            'departure.required' => 'Please Choose Departure',
+            'destination.required' => 'Please Choose Destination',
+            'departDay.required' => 'Please Enter Departure Date',
+            'boardingTime.required' => 'Please Enter Boarding Time',
+            'flightTime.required' => 'Please Enter Flight Time',
+            'returnDay.required' => 'Please Enter Return Date',
+            'ticketPrice.required' => 'Please Enter Price of Ticker',
+        ]);
         $saveflight = Flights::findOrFail($id);
         $saveflight->flightID = $request->input('flightID');
         $saveflight->planeID = $request->input('planeID');
@@ -146,6 +174,13 @@ class EnterpriseController extends Controller
 
     public function PostUpdatePlane(Request $request, $id)
     {
+        $this->validate($request, [
+            'planeID'=>'required',
+            'planeType'=>'required',
+        ],[
+            'planeID.required' => 'Please Enter Plane No',
+            'planeType.required' => 'Please Choose Plane Type',
+        ]);
         $saveplane = Plane::findOrFail($id);
         $saveplane->planeID = $request->input('planeID');
         $saveplane->planeType = $request->input('planeType');

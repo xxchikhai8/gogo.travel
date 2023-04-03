@@ -35,6 +35,17 @@ class AccountController extends Controller
     }
 
     public function PostUpdateInformation(Request $request) {
+        $this->validate($request, [
+            'cusName'=>'required',
+            'DoB'=>'required',
+            'phone'=>'required',
+            'email'=>'required',
+        ],[
+            'cusName.required' => 'Please Enter Your Full Name',
+            'DoB.required' => 'Please Enter Your Date of Birth',
+            'phone.required' => 'Please Enter Your Phone',
+            'email.required' => 'Please Enter Your Email',
+        ]);
         $saveCustomer = Customers::where('username', Auth::user()->username)->first();
         $saveCustomer->cusName = $request->input('cusName');
         $saveCustomer->DoB = $request->input('DoB');
@@ -50,6 +61,13 @@ class AccountController extends Controller
     }
 
     public function PostChangePassword(Request $request) {
+        $this->validate($request, [
+            'newPass'=>'required',
+            'confirmPass'=>'required',
+        ],[
+            'newPass.required' => 'Please Enter New Password',
+            'confirmPass.required' => 'Please Enter Confirm Password',
+        ]);
         if ($request->input('newPass') == $request->input('confirmPass')) {
             $user = User::where('username', Auth::user()->username)->first();
             $hash = Hash::make($request->input('newPass'));

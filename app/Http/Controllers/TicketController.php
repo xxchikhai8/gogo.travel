@@ -39,7 +39,11 @@ class TicketController extends Controller
 
     public function booking(Request $request)
     {
-
+        $this->validate($request, [
+            'passengerName'=>'required',
+        ],[
+            'passengerName.required' => 'Please Enter Name of Passenger ',
+        ]);
         $saveTicket = new Tickets;
         $url = '/ticket/booking' . '/' . $request->input('flightID');
         $saveTicket->ticketID = $request->input('ticketID');

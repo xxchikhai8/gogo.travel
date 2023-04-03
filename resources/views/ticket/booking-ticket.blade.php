@@ -159,6 +159,15 @@
         </div>
         <div class="w-75 mx-auto mt-5">
             <h3 class="text-center mb-3 fw-bold">Passenger Information</h3>
+            @if (count($errors) > 0)
+                <div class="d-flex justify-content-center">
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $err)
+                            <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ $err }}</div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
             <div class="form-floating mb-3">
                 <input type="text" name="passengerName" class="form-control border border-dark" id="floatingInput"
                     placeholder="Passenger Name">

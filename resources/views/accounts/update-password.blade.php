@@ -8,6 +8,15 @@
             <form action="/password/change/save" method="POST">
                 @csrf
                 <h3 class="text-center mb-3 fw-bold">Change Password</h3>
+                @if (count($errors) > 0)
+                    <div class="d-flex justify-content-center">
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $err)
+                                <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ $err }}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
                 <div class="form-floating mb-3">
                     <input type="password" name="newPass" class="form-control border border-dark" id="floatingInput"
                         placeholder="New Password" required>
@@ -28,6 +37,15 @@
             <form action="/password/changes/save" method="POST">
                 @csrf
                 <h3 class="text-center mb-3 fw-bold">Change Password</h3>
+                @if (count($errors) > 0)
+                    <div class="d-flex justify-content-center">
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $err)
+                                <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ $err }}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
                 <div class="form-floating mb-3">
                     <input type="password" name="newPass" class="form-control border border-dark" id="floatingInput"
                         placeholder="New Password" required>
