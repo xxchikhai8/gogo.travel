@@ -3,7 +3,7 @@
 @section('title', 'Ticket List')
 <div class="container">
     <div class="d-flex justify-content-center">
-        <form action="/update-flight/{{$flight->id}}" method="POST">
+        <form action="/flight/update/{{$flight->id}}/save" method="POST">
             @csrf
             <a href="/flight" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
             <h3 class="text-center mb-3 fw-bold">Update Flight</h3>
@@ -16,7 +16,7 @@
                 <select class="form-select border border-dark" id="floatingSelect" name='planeID'>
                     <option selected>Choose Plane ID</option>
                     @foreach ($planes as $plane)
-                        <option value={{$plane->planeID}} @if($plane->planeID == $flight->planeID) selected @endif>{{$plane->planeID}}</option>
+                        <option value="{{$plane->planeID}}" @if($plane->planeID == $flight->planeID) selected @endif>{{$plane->planeID}}</option>
                     @endforeach
                   </select>
                 <label for="floatingSelect">Plane ID</label>
@@ -25,7 +25,7 @@
                 <select class="form-select border border-dark" id="floatingSelect" name='departure'>
                     <option selected value="">Choose Departure</option>
                     @foreach ($airports as $airport)
-                        <option value={{ $airport->airportCode }} @if($airport->airportCode == $flight->departure) selected @endif>{{ $airport->location }} |
+                        <option value="{{ $airport->airportCode }}" @if($airport->airportCode == $flight->departure) selected @endif>{{ $airport->location }} |
                             {{ $airport->airportName }}</option>
                     @endforeach
                 </select>
@@ -35,7 +35,7 @@
                 <select class="form-select border border-dark" id="floatingSelect" name='destination'>
                     <option selected value="">Choose Destination</option>
                     @foreach ($airports as $airport)
-                        <option value={{ $airport->airportCode }} @if($airport->airportCode == $flight->destination) selected @endif>{{ $airport->location }} |
+                        <option value="{{ $airport->airportCode }}" @if($airport->airportCode == $flight->destination) selected @endif>{{ $airport->location }} |
                             {{ $airport->airportName }}</option>
                     @endforeach
                 </select>

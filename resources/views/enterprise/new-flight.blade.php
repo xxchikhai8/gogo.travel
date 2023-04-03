@@ -3,10 +3,19 @@
 @section('title', 'New Flight')
 <div class="container">
     <div class="w-75 mx-auto">
-        <form action="/save-flight" method="POST">
+        <form action="/flight/new/save" method="POST">
             @csrf
             <a href="/flight" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
             <h3 class="text-center mb-3 fw-bold">New Flight</h3>
+            @if (count($errors) > 0)
+                <div class="d-flex justify-content-center">
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $err)
+                            <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ $err }}</div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
             <div class="form-floating mb-3">
                 <input type="text" name="flightID" class="form-control border border-dark" id="floatingInput"
                     placeholder="Flight ID">
@@ -16,7 +25,7 @@
                 <select class="form-select border border-dark" id="floatingSelect" name='planeID'>
                     <option selected value="">Choose Plane ID</option>
                     @foreach ($planes as $plane)
-                        <option value={{ $plane->planeID }}>{{ $plane->planeID }}</option>
+                        <option value="{{ $plane->planeID }}">{{ $plane->planeID }}</option>
                     @endforeach
                 </select>
                 <label for="floatingSelect">Plane ID</label>
@@ -25,7 +34,7 @@
                 <select class="form-select border border-dark" id="floatingSelect" name='departure'>
                     <option selected value="">Choose Departure</option>
                     @foreach ($airports as $airport)
-                        <option value={{ $airport->airportCode }}>{{ $airport->location }} |
+                        <option value="{{ $airport->airportCode }}">{{ $airport->location }} |
                             {{ $airport->airportCode }}</option>
                     @endforeach
                 </select>
@@ -35,7 +44,7 @@
                 <select class="form-select border border-dark" id="floatingSelect" name='destination'>
                     <option selected value="">Choose Destination</option>
                     @foreach ($airports as $airport)
-                        <option value={{ $airport->airportCode }}>{{ $airport->location }} |
+                        <option value="{{ $airport->airportCode }}">{{ $airport->location }} |
                             {{ $airport->airportCode }}</option>
                     @endforeach
                 </select>

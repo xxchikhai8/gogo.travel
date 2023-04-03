@@ -3,7 +3,7 @@
 @section('title', 'Ticket List')
 <div class="container">
     <div class="w-75 mx-auto">
-        <form action="/update-plane/{{$plane->id}}" method="POST">
+        <form action="/planes/{{$plane->id}}/update" method="POST">
             @csrf
             <a href="/planes" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
             <h3 class="text-center mb-3 fw-bold">Update Plane</h3>

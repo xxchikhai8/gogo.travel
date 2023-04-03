@@ -3,7 +3,7 @@
 @section('title', 'Enterprise Home')
 <div class="mb-3">
     <div class="mb-3 d-flex justify-content-center">
-        <a href="/new-flight" class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Flight</a>
+        <a href="/flight/new" class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Flight</a>
     </div>
     <table>
         <tr>
@@ -35,15 +35,41 @@
                 <?php $money = $flight->priceTicket; setlocale(LC_MONETARY, 'en_US'); ?>
                 <td>$ <?php echo number_format($money); ?></td>
                 <td>{{$flight->state}}</td>
-                <td class="text-center"><a href="/update-flight/{{$flight->flightID}}" ><i class="fa-solid fa-pen-to-square"></i></a></td>
+                <td class="text-center"><a href="/flight/update/{{$flight->flightID}}" ><i class="fa-solid fa-pen-to-square"></i></a></td>
             </tr>
         @endforeach
     </table>
+    <div class="d-flex justify-content-center mt-3">
+        {{ $flights->links() }}
+    </div>
 </div>
 @if (session('notify') == 'editSuccess')
     <script>
         Swal.fire({
             title: 'Change Flight Information Successful!',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+        })
+    </script>
+@endif
+@if (session('notify') == 'newSuccess')
+    <script>
+        Swal.fire({
+            title: 'Add New Flight Information Successful!',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+        })
+    </script>
+@endif
+@if (session('notify')=='enterprise')
+    <script>
+        Swal.fire({
+            title: 'Sign In Successful!',
+            text: 'Welcome Back.',
             icon: 'success',
             timer: 2000,
             showConfirmButton: false,

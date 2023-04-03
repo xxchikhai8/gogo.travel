@@ -3,7 +3,7 @@
 @section('title', 'Plane List')
 <div class="mb-3">
     <div class="mb-3 d-flex justify-content-center">
-        <a href="/new-plane" class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Plane</a>
+        <a href="/planes/new" class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Plane</a>
     </div>
     <table>
         <tr>
@@ -16,11 +16,14 @@
                 <td>{{$plane->planeID}}</td>
                 <td>{{$plane->planeType}}</td>
                 <td class="text-center">
-                    <a href="/update-plane/{{$plane->planeID}}" ><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="/planes/{{$plane->planeID}}/update" ><i class="fa-solid fa-pen-to-square"></i></a>
                 </td>
             </tr>
         @endforeach
     </table>
+    <div class="d-flex justify-content-center mt-3">
+        {{ $planes->links() }}
+    </div>
 </div>
 @if (session('notify') == 'updateSuccess')
     <script>
