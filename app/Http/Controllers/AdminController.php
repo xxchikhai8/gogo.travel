@@ -16,15 +16,15 @@ class AdminController extends Controller
     }
 
     public function airport() {
-        $airports = DB::table('airport')->paginate(10);
+        $airports = DB::table('airport')->orderByDesc('id')->paginate(10);
         return view('admin.airport', compact('airports'));
     }
 
-    public function callNewAirportIndex() {
+    public function newAirport() {
         return view('admin.new-airport');
     }
 
-    public function newAirport(Request $request) {
+    public function saveNewAirport(Request $request) {
         $saveAirport = new Airports;
         $saveAirport->airportCode = $request->input('airportCode');
         $saveAirport->airportName = $request->input('airportName');
@@ -37,9 +37,28 @@ class AdminController extends Controller
         $newPass = 'a123456';
         $hashPass = Hash::make($newPass);
         $username = DB::table('users')->where('username', $id)->first();
-        $updateUsername = User::findOrFail($username->id);
-        $updateUsername->password = $hashPass;
-        $updateUsername->update();
-        return redirect('/user')->with('notify', 'resetSuccess');
+        if ($username->role=='admin') {
+            return redirect('/user')->with('notify', 'resetFail');
+        }
+        else {
+            $updateUsername = User::findOrFail($username->id);
+            $updateUsername->password = $hashPass;
+            $updateUsername->update();
+            return redirect('/user')->with('notify', 'resetSuccess');
+        }
+    }
+
+    public function getUpdateAirport(Request $request, $id) {
+        $airport = DB::table('airport')->where('airportCode', $id)->first();
+        return view('admin.update-airport', compact('airport'));
+    }
+
+    public function postUpdateAirport(Request $request, $id) {
+        $airport = Airports::where('airportCode', $id)->first();
+        $airport->airportCode = $request->input('airportCode');
+        $airport->airportName = $request->input('airportName');
+        $airport->location = $request->input('location');
+        $airport->update();
+        return redirect('/airport')->with('notify', 'updateSuccess');
     }
 }
