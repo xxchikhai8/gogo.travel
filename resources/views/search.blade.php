@@ -23,7 +23,7 @@
                     <select class="form-select border border-dark" id="floatingSelect" name='destination'>
                         <option selected value="">Choose Destination</option>
                         @foreach ($airports as $airport)
-                        <option value={{ $airport->airportCode }} @if ($airport->airportCode==$destination) selected @endif>{{ $airport->location }} |
+                        <option value="{{ $airport->airportCode }}" @if ($airport->airportCode==$destination) selected @endif>{{ $airport->location }} |
                             {{ $airport->airportCode }}</option>
                         @endforeach
                     </select>
@@ -69,7 +69,7 @@
                                     <?php echo number_format($money); ?>
                                 </h6>
                             </div>
-                            <a href="booking-ticket/{{ $result->flightID }}" class="stretched-link"></a>
+                            <a href="/ticket/booking/{{ $result->flightID }}" class="stretched-link"></a>
                         </div>
                         <?php $date = new DateTimeImmutable($result->departDay); ?>
                         <h6>Department Day:

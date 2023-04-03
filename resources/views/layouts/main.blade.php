@@ -123,6 +123,7 @@
                         <form action="/sign-up" method="POST">
                             @csrf
                             <div class="modal-body">
+                                <input type="hidden" name="current_page" value="{{Request::getRequestUri()}}">
                                 <div class="center">
                                     <div class="btn-group rolebutton" role="group"
                                         aria-label="Basic radio toggle button group">

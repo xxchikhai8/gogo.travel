@@ -66,7 +66,7 @@
                                     setlocale(LC_MONETARY, 'en_US'); ?>
                                     <h6>Price: $<?php echo number_format($money); ?></h6>
                                 </div>
-                                <a href="booking-ticket/{{ $flight->flightID }}" class="stretched-link"></a>
+                                <a href="/ticket/booking/{{ $flight->flightID }}" class="stretched-link"></a>
                             </div>
                             <?php $date = new DateTimeImmutable($flight->departDay); ?>
                             <h6>Department Day: <?php echo date_format($date, 'd M Y'); ?> - Flight Time: {{ $flight->flightTime }} hours</h5>

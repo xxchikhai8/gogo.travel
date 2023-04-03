@@ -15,7 +15,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        $flights = DB::table('flights')->orderByDesc('id')->paginate(6);
+        $flights = DB::table('flights')->where('state', 'Excepted')->orderByDesc('id')->paginate(6);
         $airports = DB::table('airport')->get();
         foreach ($flights as $flight) {
             $depart = DB::table('airport')->where('airportCode', $flight->departure)->value('airportName');
@@ -28,28 +28,20 @@ class MainController extends Controller
 
     public function signin(Request $request)
     {
-
-        $this->validate($request, [
-            'username' => 'required',
-            'password' => 'required'
-        ], [
-            'username.required' => 'Plese Enter Username',
-            'password.requires' => 'Plase Enter Password'
-        ]);
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             if (Auth::user()->role == 'user') {
                 if (Auth::user()->state == 'not active') {
                     return redirect()->with('notify', 'active');
                 } else {
-                    return redirect($request['current_page'])->with('notify', '0');
+                    return redirect($request->input('current_page'))->with('notify', '0');
                 }
             } else if (Auth::user()->role == 'enterprise') {
-                return redirect('/flight')->with('notify', '0');
+                return redirect('/flight')->with('notify', 'enterprise');
             } else if (Auth::user()->role == 'admin') {
                 return redirect('/user')->with('notify', 'admin');
             }
         } else {
-            return redirect('/')->with('notify', '1');
+            return redirect($request->input('current_page'))->with('notify', '1');
         }
     }
 
@@ -70,7 +62,7 @@ class MainController extends Controller
                 $customer = new Customers;
                 $customer->username = $request->input('username');
                 $customer->save();
-                return redirect('/')->with('notify', 'signupSuccess');
+                return redirect($request->input('current_page'))->with('notify', 'signupSuccess');
             } else {
                 $users = new User;
                 $users->username = $request->input('username');
@@ -87,10 +79,10 @@ class MainController extends Controller
                 $airline->Nation = $request->input('nation');
                 $users->save();
                 $airline->save();
-                return redirect('/')->with('notify', 'signupSuccess');
+                return redirect($request->input('current_page'))->with('notify', 'signupSuccess');
             }
         } else {
-            return redirect('/')->with('notify', 'confPass');
+            return redirect($request->input('current_page'))->with('notify', 'confPass');
         }
     }
 
@@ -115,9 +107,16 @@ class MainController extends Controller
         return view('search', compact('results', 'airports', 'departure', 'destination'));
     }
 
-    public function signout()
+    public function signout(Request $request)
     {
-        Auth::logout();
-        return redirect('/')->with('notify', '2');
+        if (Auth::user()->role == 'admin' || Auth::user()->role == 'enterprise') {
+            Auth::logout();
+            return redirect('/')->with('notify', '2');
+        }
+        else {
+            Auth::logout();
+            return redirect($request->input('current_page'))->with('notify', '2');
+        }
+
     }
 }
