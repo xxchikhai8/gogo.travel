@@ -74,7 +74,7 @@
             <div class="form-floating mb-3">
                 <input type="text" name="ticketPrice" class="form-control border border-dark" id="floatingInput"
                     placeholder="Ticket Price">
-                <label for="floatingInput">Ticket Price</label>
+                <label for="floatingInput">Ticket Price ($)</label>
             </div>
             <button type="submit" class="btn btn-primary d-block mx-auto">Save Flight</button>
         </form>

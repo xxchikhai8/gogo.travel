@@ -7,8 +7,8 @@
     </div>
     <table>
         <tr>
-            <th>Flight ID</th>
-            <th>Plane ID</th>
+            <th>Flight No</th>
+            <th>Plane No</th>
             <th>Departure</th>
             <th>Destination</th>
             <th>Departure Day</th>
@@ -40,12 +40,11 @@
         @endforeach
     </table>
 </div>
-@if (session('notify') == '0')
+@if (session('notify') == 'editSuccess')
     <script>
         Swal.fire({
-            title: 'Sign In Successful!',
+            title: 'Change Flight Information Successful!',
             icon: 'success',
-            text: 'Welcome Back.',
             timer: 2000,
             showConfirmButton: false,
             allowOutsideClick: false,

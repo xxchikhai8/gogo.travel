@@ -34,7 +34,11 @@ class EnterpriseController extends Controller
 
     public function ticketlist()
     {
-        return view('enterprise.ticket');
+        $usernames = Auth::user()->username;
+        $airline = DB::table('airlines')->where('username', $usernames)->value('airlineCode');
+        $tickets = DB::table('tickets')->join('flights', 'flights.flightID', '=', 'tickets.flightID')
+        ->where('planeID', 'LIKE', "%{$airline}%")->orderByDesc('tickets.id')->paginate(2);
+        return view('enterprise.ticket', compact('tickets'));
     }
 
     public function newflight()
@@ -117,17 +121,21 @@ class EnterpriseController extends Controller
         $saveflight->priceTicket = $request->input('ticketPrice');
         $saveflight->state = $request->input('state');
         $saveflight->update();
-        return redirect('/flight')->with('notify', 'updateSuccess');
+        return redirect('/flight')->with('notify', 'editSuccess');
     }
 
     public function PostUpdatePlane(Request $request, $id)
     {
         $saveplane = Plane::findOrFail($id);
-        return view('/plane')->with('notify', 'updateSuccess');
+        $saveplane->planeID = $request->input('planeID');
+        $saveplane->planeType = $request->input('planeType');
+        $saveplane->update();
+        return redirect('/planes')->with('notify', 'updateSuccess');
     }
 
     public function dashboard()
     {
+
         return view('enterprise.dashboard');
     }
 }

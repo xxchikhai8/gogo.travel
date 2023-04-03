@@ -22,5 +22,16 @@
         @endforeach
     </table>
 </div>
+@if (session('notify') == 'updateSuccess')
+    <script>
+        Swal.fire({
+            title: 'Update Plane Information Successful!',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+        })
+    </script>
+@endif
 @endsection
 
