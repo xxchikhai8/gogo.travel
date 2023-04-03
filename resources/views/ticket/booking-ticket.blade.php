@@ -145,12 +145,12 @@
                 <div class="col">
                     <div class="row">
                         <div class="col fw-bold">
-                            Price:
+                            Price ($):
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <input type="text" name="ticketPrice" value="$ {{$flight->priceTicket}}" readonly class="form-control-plaintext">
+                            <input type="text" name="ticketPrice" value="{{$flight->priceTicket}}" readonly class="form-control-plaintext">
                         </div>
                     </div>
                 </div>
@@ -165,21 +165,21 @@
                 <label for="floatingInput">Passenger Name</label>
             </div>
             <div class="form-floating mb-3">
-                <select class="form-select border border-dark" id="floatingSelect" name='seetClass'>
+                <select class="form-select border border-dark" id="floatingSelect" name='seatClass'>
                     <option selected value="Economy"> Economy</option>
                     <option value="Premium Economy"> Premium Economy</option>
                     <option value="Bussiness"> Bussiness</option>
                 </select>
-                <label for="floatingInput">Seet Class</label>
+                <label for="floatingInput">Seat Class</label>
             </div>
             <div class="form-check form-switch mb-3">
-                <input class="form-check-input" type="checkbox" role="switch" id="reDay" value="return">
-                <label class="form-check-label" for="reDay">Return</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="reDay" name="returnOrNot" value="Yes">
+                <label class="form-check-label" for="reDay">Return Date</label>
             </div>
             <div class="form-floating mb-3" id="return" style="display: none">
                 <input type="date" name="returnDay" class="form-control border border-dark" id="floatingInput" value="{{$flight->returnDay}}"
-                    placeholder="Return Day" readonly>
-                <label for="floatingInput">Return Day</label>
+                    placeholder="Return Date" readonly>
+                <label for="floatingInput">Return Date</label>
             </div>
         </div>
         <button type="submit" class="btn btn-primary d-block mx-auto check_signin" data-toggle="tooltip">Booking
@@ -214,6 +214,17 @@
             event.preventDefault();
             $('#sign-in-modal').modal('show');
         });
+    </script>
+@endif
+@if (session('notify') == 'bookSuccess')
+    <script>
+        Swal.fire({
+            title: 'Booking Ticket Successful!',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+        })
     </script>
 @endif
 @endsection
