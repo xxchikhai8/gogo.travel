@@ -41,7 +41,7 @@ class TicketController extends Controller
     {
 
         $saveTicket = new Tickets;
-        $url = '/booking-ticket' . '/' . $request->input('flightID');
+        $url = '/ticket/booking' . '/' . $request->input('flightID');
         $saveTicket->ticketID = $request->input('ticketID');
         $saveTicket->flightID = $request->input('flightID');
         $saveTicket->username = Auth::user()->username;
@@ -72,7 +72,7 @@ class TicketController extends Controller
             $saveTicket->ticketPrice = $request->input('ticketPrice');
         }
         $currenDay = Carbon::now();
-        $saveTicket->bookingDay = $currenDay->toDateString();
+        $saveTicket->bookingDay = $currenDay;
         $state = DB::table('flights')->where('flightID', $request->input('flightID'))->value('state');
         $saveTicket->state = $state;
         $saveTicket->save();

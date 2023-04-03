@@ -227,4 +227,66 @@
         })
     </script>
 @endif
+@if (session('notify') == '0')
+    <script>
+        Swal.fire({
+            title: 'Sign In Successful',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+        });
+    </script>
+@endif
+@if (session('notify') == 'active')
+    <script>
+        Swal.fire({
+            title: 'Sign In Fail!',
+            text: 'You Have Deleted This Account'
+            icon: 'error',
+            allowOutsideClick: false,
+        });
+    </script>
+@endif
+@if (session('notify') == '1')
+    <script>
+        Swal.fire({
+            title: 'Sign In Failed!',
+            text: ' Username or Password is not correct!',
+            icon: 'error',
+            allowOutsideClick: false,
+        });
+    </script>
+@endif
+@if (session('notify') == 'exists')
+    <script>
+        Swal.fire({
+            title: 'Sign Up Failed!',
+            text: 'Username Was Exists!',
+            icon: 'error',
+            allowOutsideClick: false,
+        });
+    </script>
+@endif
+@if (session('notify') == 'confPass')
+    <script>
+        Swal.fire({
+            title: 'Sign Up Failed!',
+            text: 'Password and Confirm Password is not match!',
+            icon: 'error',
+            allowOutsideClick: false,
+        });
+    </script>
+@endif
+@if (session('notify') == 'signupSuccess')
+    <script>
+        Swal.fire({
+            title: 'Sign Up Successful',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+        });
+    </script>
+@endif
 @endsection

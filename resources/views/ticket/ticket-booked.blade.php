@@ -221,7 +221,7 @@
                         </div>
                     </div>
                     <div class="row p-2 bg-warning text-dark" style="border-radius:0px 0px 1rem 1rem;"></div>
-                    <a href="/ticket-detail/{{$ticket->ticketID}}" class="stretched-link" title="Click To View More Detail of Ticket"></a>
+                    <a href="/ticket/detail/{{$ticket->ticketID}}" class="stretched-link" title="Click To View More Detail of Ticket"></a>
                 </div>
             </div>
         </div>

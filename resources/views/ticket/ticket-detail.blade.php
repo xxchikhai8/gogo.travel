@@ -3,7 +3,7 @@
 @section('title', 'Ticket Detail')
 <div class="container">
     <div class="mt-1">
-        <a href="/ticket-history" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
+        <a href="/ticket/history" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
     </div>
     <h2 class="mb-3 text-center fw-bold">Ticket Detail</h2>
     <div class="card mb-4" id="border-transparent">
