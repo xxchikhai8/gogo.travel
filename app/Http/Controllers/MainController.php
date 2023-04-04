@@ -15,15 +15,23 @@ class MainController extends Controller
 {
     public function index()
     {
-        $flights = DB::table('flights')->where('state', 'Excepted')->orderByDesc('id')->paginate(6);
-        $airports = DB::table('airport')->get();
-        foreach ($flights as $flight) {
-            $depart = DB::table('airport')->where('airportCode', $flight->departure)->value('airportName');
-            $flight->departure = $depart;
-            $desti = DB::table('airport')->where('airportCode', $flight->destination)->value('airportName');
-            $flight->destination = $desti;
+        if (Auth::check() == true && Auth::user()->role == 'admin') {
+            return redirect('/user');
         }
-        return view('index', compact('flights', 'airports'));
+        elseif (Auth::check() == true && Auth::user()->role == 'enterprise') {
+            return redirect('/flight');
+        }
+        else {
+            $flights = DB::table('flights')->where('state', 'Excepted')->orderByDesc('id')->paginate(6);
+            $airports = DB::table('airport')->get();
+            foreach ($flights as $flight) {
+                $depart = DB::table('airport')->where('airportCode', $flight->departure)->value('airportName');
+                $flight->departure = $depart;
+                $desti = DB::table('airport')->where('airportCode', $flight->destination)->value('airportName');
+                $flight->destination = $desti;
+            }
+            return view('index', compact('flights', 'airports'));
+        }
     }
 
     public function signin(Request $request)
