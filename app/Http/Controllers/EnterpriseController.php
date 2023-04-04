@@ -95,19 +95,25 @@ class EnterpriseController extends Controller
             'returnDay.required' => 'Please Enter Return Date',
             'ticketPrice.required' => 'Please Enter Price of Ticker',
         ]);
-        $saveflight = new Flights;
-        $saveflight->flightID = $request->input('flightID');
-        $saveflight->planeID = $request->input('planeID');
-        $saveflight->departure = $request->input('departure');
-        $saveflight->destination = $request->input('destination');
-        $saveflight->departDay = $request->input('departDay');
-        $saveflight->boardingTime = $request->input('boardingTime');
-        $saveflight->flightTime = $request->input('flightTime');
-        $saveflight->returnDay = $request->input('returnDay');
-        $saveflight->priceTicket = $request->input('ticketPrice');
-        $saveflight->state = "Excepted";
-        $saveflight->save();
-        return redirect('/flight')->with('notify', 'newSuccess');
+        if (DB::table('flights')->where('flightID', $request->input('flightID'))->exists())
+        {
+            return redirect('/flight/new')->with('notify', 'exits');
+        }
+        else {
+            $saveflight = new Flights;
+            $saveflight->flightID = $request->input('flightID');
+            $saveflight->planeID = $request->input('planeID');
+            $saveflight->departure = $request->input('departure');
+            $saveflight->destination = $request->input('destination');
+            $saveflight->departDay = $request->input('departDay');
+            $saveflight->boardingTime = $request->input('boardingTime');
+            $saveflight->flightTime = $request->input('flightTime');
+            $saveflight->returnDay = $request->input('returnDay');
+            $saveflight->priceTicket = $request->input('ticketPrice');
+            $saveflight->state = "Excepted";
+            $saveflight->save();
+            return redirect('/flight')->with('notify', 'newSuccess');
+        }
     }
 
     public function saveplane(Request $request)
@@ -122,7 +128,7 @@ class EnterpriseController extends Controller
         $username = Auth::user()->username;
         $airlineCode = DB::table('airlines')->where('username', $username)->value('airlineCode');
         if (DB::table('plane')->where('planeID', $request->input('planeID'))->where('airlineCode', $airlineCode)->exists()) {
-            return redirect('/plane/new')->with('notify', 'duplicate');
+            return redirect('/planes/new')->with('notify', 'exits');
         } else {
             $saveplane = new Plane;
             $saveplane->airlineCode = $airlineCode;
@@ -157,19 +163,25 @@ class EnterpriseController extends Controller
             'returnDay.required' => 'Please Enter Return Date',
             'ticketPrice.required' => 'Please Enter Price of Ticker',
         ]);
-        $saveflight = Flights::findOrFail($id);
-        $saveflight->flightID = $request->input('flightID');
-        $saveflight->planeID = $request->input('planeID');
-        $saveflight->departure = $request->input('departure');
-        $saveflight->destination = $request->input('destination');
-        $saveflight->departDay = $request->input('departDay');
-        $saveflight->boardingTime = $request->input('boardingTime');
-        $saveflight->flightTime = $request->input('flightTime');
-        $saveflight->returnDay = $request->input('returnDay');
-        $saveflight->priceTicket = $request->input('ticketPrice');
-        $saveflight->state = $request->input('state');
-        $saveflight->update();
-        return redirect('/flight')->with('notify', 'editSuccess');
+        $old = DB::table('flights')->where('flightID', $id)->value('flightID');
+        if (DB::table('flights')->where('flightID', $request->input('flightID'))->exists() && $old != $request->input('flightID')) {
+            return redirect($request->input('current_page'))->with('notify', 'editFail');
+        }
+        else {
+            $saveflight = Flights::where('flightID', $id)->first();
+            $saveflight->flightID = $request->input('flightID');
+            $saveflight->planeID = $request->input('planeID');
+            $saveflight->departure = $request->input('departure');
+            $saveflight->destination = $request->input('destination');
+            $saveflight->departDay = $request->input('departDay');
+            $saveflight->boardingTime = $request->input('boardingTime');
+            $saveflight->flightTime = $request->input('flightTime');
+            $saveflight->returnDay = $request->input('returnDay');
+            $saveflight->priceTicket = $request->input('ticketPrice');
+            $saveflight->state = $request->input('state');
+            $saveflight->update();
+            return redirect('/flight')->with('notify', 'editSuccess');
+        }
     }
 
     public function PostUpdatePlane(Request $request, $id)
@@ -181,11 +193,19 @@ class EnterpriseController extends Controller
             'planeID.required' => 'Please Enter Plane No',
             'planeType.required' => 'Please Choose Plane Type',
         ]);
-        $saveplane = Plane::findOrFail($id);
-        $saveplane->planeID = $request->input('planeID');
-        $saveplane->planeType = $request->input('planeType');
-        $saveplane->update();
-        return redirect('/planes')->with('notify', 'updateSuccess');
+        $username = Auth::user()->username;
+        $airlineCode = DB::table('airlines')->where('username', $username)->value('airlineCode');
+        $old = DB::table('plane')->where('planeID', $id)->where('airlineCode', $airlineCode)->value('PlaneID');
+        if (DB::table('plane')->where('planeID', $request->input('planeID'))->where('airlineCode', $airlineCode)->exists() && $old != $request->input('planeID') ) {
+            return redirect($request->input('current_page'))->with('notify', 'editFail');
+        }
+        else {
+            $saveplane = Plane::where('planeID', $id)->first();
+            $saveplane->planeID = $request->input('planeID');
+            $saveplane->planeType = $request->input('planeType');
+            $saveplane->update();
+            return redirect('/planes')->with('notify', 'updateSuccess');
+        }
     }
 
     public function dashboard(Request $request)

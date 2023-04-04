@@ -18,8 +18,8 @@
             @endif
             <div class="form-floating mb-3">
                 <input type="text" name="planeID" class="form-control border border-dark" id="floatingInput"
-                    placeholder="Plane ID">
-                <label for="floatingInput">Plane ID</label>
+                    placeholder="Plane No">
+                <label for="floatingInput">Plane No</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" name="planeType" class="form-control border border-dark" id="floatingInput"
@@ -30,4 +30,14 @@
         </form>
     </div>
 </div>
+@if (session('notify') == 'exits')
+    <script>
+        Swal.fire({
+            title: 'Add New Plane Information Fail!',
+            text: 'Plane No was exit!',
+            icon: 'error',
+            allowOutsideClick: false,
+        })
+    </script>
+@endif
 @endsection

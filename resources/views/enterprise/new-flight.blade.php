@@ -89,4 +89,14 @@
         </form>
     </div>
 </div>
+@if (session('notify') == 'exits')
+    <script>
+        Swal.fire({
+            title: 'Add New Flight Information Fail!',
+            text: 'Flight No was exit!',
+            icon: 'error',
+            allowOutsideClick: false,
+        })
+    </script>
+@endif
 @endsection

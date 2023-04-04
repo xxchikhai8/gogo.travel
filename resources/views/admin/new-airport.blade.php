@@ -7,6 +7,16 @@
             @csrf
             <a href="/airport" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
             <h3 class="text-center mb-3 fw-bold">New Airport</h3>
+            @if (count($errors) > 0)
+                <div class="d-flex justify-content-center">
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $err)
+                            <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ $err }}</div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+            <input type="hidden" name="current_page" value="{{Request::getRequestUri()}}">
             <div class="form-floating mb-3">
                 <input type="text" name="airportCode" class="form-control border border-dark" id="floatingInput"
                     placeholder="Airport ID">
@@ -26,4 +36,14 @@
         </form>
     </div>
 </div>
+@if (session('notify') == 'newFail')
+    <script>
+        Swal.fire({
+            title: 'Add New Airport Information Successful!',
+            text: 'The Airport Information That Your Enter was exit!',
+            icon: 'error',
+            allowOutsideClick: false,
+        })
+    </script>
+@endif
 @endsection

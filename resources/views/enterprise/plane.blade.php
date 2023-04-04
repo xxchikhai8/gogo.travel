@@ -7,7 +7,7 @@
     </div>
     <table>
         <tr>
-            <th>Plane ID</th>
+            <th>Plane No</th>
             <th>Type of Airplane</th>
             <th>Config</th>
         </tr>

@@ -3,10 +3,11 @@
 @section('title', 'Ticket List')
 <div class="container">
     <div class="d-flex justify-content-center">
-        <form action="/flight/update/{{$flight->id}}/save" method="POST">
+        <form action="/flight/update/{{$flight->flightID}}/save" method="POST">
             @csrf
             <a href="/flight" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
             <h3 class="text-center mb-3 fw-bold">Update Flight</h3>
+            <input type="hidden" name="current_page" value="{{Request::getRequestUri()}}">
             @if (count($errors) > 0)
                 <div class="d-flex justify-content-center">
                     <div class="alert alert-danger">
@@ -122,4 +123,14 @@
         });
     });
 </script>
+@if (session('notify') == 'editFail')
+    <script>
+        Swal.fire({
+            title: 'Update Flight Information Fail!',
+            text: 'Flight No was exit!',
+            icon: 'error',
+            allowOutsideClick: false,
+        })
+    </script>
+@endif
 @endsection

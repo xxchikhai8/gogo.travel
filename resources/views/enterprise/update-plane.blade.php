@@ -3,7 +3,7 @@
 @section('title', 'Ticket List')
 <div class="container">
     <div class="w-75 mx-auto">
-        <form action="/planes/{{$plane->id}}/update" method="POST">
+        <form action="/planes/{{$plane->planeID}}/update" method="POST">
             @csrf
             <a href="/planes" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
             <h3 class="text-center mb-3 fw-bold">Update Plane</h3>
@@ -16,10 +16,11 @@
                     </div>
                 </div>
             @endif
+            <input type="hidden" name="current_page" value="{{Request::getRequestUri()}}">
             <div class="form-floating mb-3">
                 <input type="text" name="planeID" class="form-control border border-dark" id="floatingInput" value="{{$plane->planeID}}"
-                    placeholder="Plane ID">
-                <label for="floatingInput">Plane ID</label>
+                    placeholder="Plane No">
+                <label for="floatingInput">Plane No</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" name="planeType" class="form-control border border-dark" id="floatingInput" value="{{$plane->planeType}}"
@@ -52,4 +53,14 @@
         });
     });
 </script>
+@if (session('notify') == 'editFail')
+    <script>
+        Swal.fire({
+            title: 'Update Plane Information Fail!',
+            text: 'Plane No was exit!',
+            icon: 'error',
+            allowOutsideClick: false,
+        })
+    </script>
+@endif
 @endsection

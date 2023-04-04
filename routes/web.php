@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/airport/new', [AdminController::class, 'newAirport']);
         Route::post('/airport/new/save', [AdminController::class, 'saveNewAirport']);
         Route::get('/airport/update/{id}', [AdminController::class, 'getUpdateAirport']);
-        Route::post('/airport/update/{id}/save', [AdminController::class, 'postUpdateAirport']);
+        Route::post('/airport/update/save/{id}', [AdminController::class, 'postUpdateAirport']);
         Route::get('/reset/{id}', [AdminController::class, 'reset']);
     });
     Route::middleware(['enterprise'])->group( function () {
