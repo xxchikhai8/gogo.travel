@@ -14,8 +14,8 @@
                             <label for="year">Choose Yaer:</label>
                             <select name="year" id="year">
                                 <option value="2023" selected>2023</option>
-                                @for ($item = 2024; $item < 2034; $item++ )
-                                    <option value="{{$item}}" @if ($item == $select) selected @endif>{{$item}}</option>
+                                @for ($i = 2024; $i < 2034; $i++ )
+                                    <option value="{{$i}}" @if ($i == $select) selected @endif>{{$i}}</option>
                                 @endfor
                             </select>
                         </div>
