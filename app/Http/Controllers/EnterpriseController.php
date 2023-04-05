@@ -47,7 +47,7 @@ class EnterpriseController extends Controller
         $usernames = Auth::user()->username;
         $airline = DB::table('airlines')->where('username', $usernames)->value('airlineCode');
         $planes = DB::table('plane')->where('airlineCode', $airline)->get();
-        $airports = DB::table('airport')->get();
+        $airports = DB::table('airport')->orderByRaw("LOWER(SUBSTRING_INDEX(location, ', ', -1)) asc")->get();
         return view('enterprise.new-flight', compact('planes', 'airports'));
     }
 
@@ -62,7 +62,7 @@ class EnterpriseController extends Controller
         $usernames = Auth::user()->username;
         $airline = DB::table('airlines')->where('username', $usernames)->value('airlineCode');
         $planes = DB::table('plane')->where('airlineCode', $airline)->get();
-        $airports = DB::table('airport')->get();
+        $airports = DB::table('airport')->orderByRaw("LOWER(SUBSTRING_INDEX(location, ', ', -1)) asc")->get();
         return view('enterprise.update-flight', compact('flight', 'planes', 'airports'));
     }
 

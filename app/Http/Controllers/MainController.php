@@ -23,7 +23,7 @@ class MainController extends Controller
         }
         else {
             $flights = DB::table('flights')->where('state', 'Excepted')->orderByDesc('id')->paginate(6);
-            $airports = DB::table('airport')->get();
+            $airports = DB::table('airport')->orderByRaw("LOWER(SUBSTRING_INDEX(location, ', ', -1)) asc")->get();
             foreach ($flights as $flight) {
                 $depart = DB::table('airport')->where('airportCode', $flight->departure)->value('airportName');
                 $flight->departure = $depart;
