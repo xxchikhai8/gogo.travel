@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ticket/history', [TicketController::class, 'ticketList']);
     Route::get('/ticket/detail/{id}', [TicketController::class, 'ticketDetail']);
     Route::post('/booking', [TicketController::class, 'booking']);
+    Route::get('delete/account/{username}', [AccountController::class, 'deleteAccount']);
     Route::get('/management/account/user', [AccountController::class, 'accountUser']);
     Route::get('/information/changes', [AccountController::class, 'GetUpdateInformation']);
     Route::post('/information/changes/save', [AccountController::class, 'PostUpdateInformation']);

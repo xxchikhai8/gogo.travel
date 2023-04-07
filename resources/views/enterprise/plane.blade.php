@@ -5,21 +5,25 @@
     <div class="mb-3 d-flex justify-content-center">
         <a href="/planes/new" class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Plane</a>
     </div>
-    <table>
-        <tr>
-            <th>Plane No</th>
-            <th>Type of Airplane</th>
-            <th>Config</th>
-        </tr>
-        @foreach ($planes as $plane)
+    <table id="datatable">
+        <thead>
             <tr>
-                <td>{{$plane->planeID}}</td>
-                <td>{{$plane->planeType}}</td>
-                <td class="text-center">
-                    <a href="/planes/{{$plane->planeID}}/update" ><i class="fa-solid fa-pen-to-square"></i></a>
-                </td>
+                <th>Plane No</th>
+                <th>Type of Airplane</th>
+                <th>Config</th>
             </tr>
-        @endforeach
+        </thead>
+        <tbody>
+            @foreach ($planes as $plane)
+                <tr>
+                    <td>{{ $plane->planeID }}</td>
+                    <td>{{ $plane->planeType }}</td>
+                    <td class="text-center">
+                        <a href="/planes/{{ $plane->planeID }}/update"><i class="fa-solid fa-pen-to-square"></i></a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
     <div class="d-flex justify-content-center mt-3">
         {{ $planes->links() }}
@@ -36,5 +40,14 @@
         })
     </script>
 @endif
+<script>
+    $(function() {
+        $('#datatable').DataTable({
+            dom: "<'row my-2'<'col-sm-12 col-md-6 mb-2'><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>",
+            "responsive": true,
+            "lengthChange": true,
+        });
+    });
+</script>
 @endsection
-

@@ -73,7 +73,28 @@ $('.show_confirm').click(function(event) {
     event.preventDefault();
     Swal.fire({
         title: 'Are you want to Update?',
-        text: 'This operation will modify the data! Are you sure you want to proceed?',
+        text: 'This operation will modify the data! Are you sure you want to Update?',
+        icon: 'question',
+        showCancelButton: true,
+        scrollbarPadding: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+});
+
+$('.show_delete').click(function(event) {
+    var form = $(this).closest("form");
+    var name = $(this).data("name");
+    event.preventDefault();
+    Swal.fire({
+        title: 'Are you want to Delete your Account?',
+        text: 'This operation will delete your account and You can not Sign In with this Account! Are you sure you want to Delete?',
         icon: 'question',
         showCancelButton: true,
         scrollbarPadding: false,

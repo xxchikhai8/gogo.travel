@@ -108,7 +108,7 @@
         event.preventDefault();
         Swal.fire({
             title: 'Are you want to Update?',
-            text: 'This operation will modify the data! Are you sure you want to proceed?',
+            text: 'This operation will modify the data! Are you sure you want to Update?',
             icon: 'question',
             showCancelButton: true,
             scrollbarPadding: false,
