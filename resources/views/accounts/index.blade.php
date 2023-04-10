@@ -59,8 +59,21 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="border border-dark rounded-2 w-75 mx-auto p-3">
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col">
+                    <h4>Account Setting</h4>
+                </div>
+                <div class="col text-end">
+                    <form action="/delete/account/{{Auth::user()->username}}" method="GET">
+                        <button type="submit" class="btn btn-danger text-light show_delete"><i class="fa-solid fa-trash me-2"></i>Delete Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>  
+    </div>
 </div>
-
 @if (session('notify') == 'changeSuccess')
     <script>
         Swal.fire({

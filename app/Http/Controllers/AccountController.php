@@ -84,4 +84,12 @@ class AccountController extends Controller
             return redirect('/password/changes')->with('notify', 'match');
         }
     }
+
+    public function deleteAccount(Request $request, $username) {
+        $delUser = User::where('username', $username)->first();
+        $delUser->state = 'not active';
+        $delUser->update();
+        Auth::logout();
+        return redirect('/')->with('notify', 'del');
+    }
 }
