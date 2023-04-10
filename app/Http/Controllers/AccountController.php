@@ -38,13 +38,15 @@ class AccountController extends Controller
         $this->validate($request, [
             'cusName'=>'required',
             'DoB'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'required|email',
         ],[
             'cusName.required' => 'Please Enter Your Full Name',
             'DoB.required' => 'Please Enter Your Date of Birth',
             'phone.required' => 'Please Enter Your Phone',
             'email.required' => 'Please Enter Your Email',
+            'phone.regex' => 'Phone Number format is not valid',
+            'email.email' => 'Email format is not valid',
         ]);
         $saveCustomer = Customers::where('username', Auth::user()->username)->first();
         $saveCustomer->cusName = $request->input('cusName');

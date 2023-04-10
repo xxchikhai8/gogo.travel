@@ -9,6 +9,15 @@
         <form action="/information/changes/save" method="post">
             @csrf
             <h3 class="text-center mb-3 fw-bold">Change Information</h3>
+            @if (count($errors) > 0)
+                <div class="d-flex justify-content-center">
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $err)
+                            <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ $err }}</div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
             <div class="form-floating mb-3">
                 <input type="text" name="cusName" class="form-control border border-dark" id="floatingInput"
                     value="{{$customer->cusName}}" placeholder="Full Name" required>
