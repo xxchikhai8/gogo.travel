@@ -12,10 +12,10 @@
                     <div class="row text-end pe-5">
                         <div class="col mt-2">
                             <label for="year">Choose Yaer:</label>
-                            <select name="year" id="year">
+                            <select name="year" id="year" onchange="this.form.submit()">
                                 <option value="2023" selected>2023</option>
                                 @for ($i = 2024; $i < 2034; $i++ )
-                                    <option value="{{$i}}" @if ($i == $select) selected @endif onchange="this.form.submit()">{{$i}}</option>
+                                    <option value="{{$i}}" @if ($i == $select) selected @endif>{{$i}}</option>
                                 @endfor
                             </select>
                         </div>
