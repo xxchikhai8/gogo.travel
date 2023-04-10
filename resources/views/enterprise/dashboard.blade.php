@@ -15,12 +15,9 @@
                             <select name="year" id="year">
                                 <option value="2023" selected>2023</option>
                                 @for ($i = 2024; $i < 2034; $i++ )
-                                    <option value="{{$i}}" @if ($i == $select) selected @endif>{{$i}}</option>
+                                    <option value="{{$i}}" @if ($i == $select) selected @endif onchange="this.form.submit()">{{$i}}</option>
                                 @endfor
                             </select>
-                        </div>
-                        <div class="col-2">
-                            <button type="submit" class="btn btn-primary">OK</button>
                         </div>
                     </div>
                 </form>
