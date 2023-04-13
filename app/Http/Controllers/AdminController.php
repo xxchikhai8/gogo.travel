@@ -49,7 +49,7 @@ class AdminController extends Controller
     }
 
     public function reset($id) {
-        $newPass = 'a123456';
+        $newPass = 'user@123';
         $hashPass = Hash::make($newPass);
         $username = DB::table('users')->where('username', $id)->first();
         if ($username->role=='admin') {
