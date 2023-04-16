@@ -14,28 +14,20 @@ class AccountController extends Controller
 {
     public function accountUser()
     {
-        if (Auth::check() == true && Auth::user()->role == 'user') {
-            $username = Auth::user()->username;
-            $customer = DB::table('customers')->where('username', $username)->first();
-            if ($customer->gender == '') {
-                $customer->gender = 2;
-            }
-            $date = new DateTimeImmutable($customer->DoB);
-            $customer->DoB = date_format($date, 'd-m-Y');
-            return view('accounts.index', compact('customer'));
-        } else {
-            return view('errors.404');
+        $username = Auth::user()->username;
+        $customer = DB::table('customers')->where('username', $username)->first();
+        if ($customer->gender == '') {
+            $customer->gender = 2;
         }
+        $date = new DateTimeImmutable($customer->DoB);
+        $customer->DoB = date_format($date, 'd-m-Y');
+        return view('accounts.index', compact('customer'));
     }
 
     public function accountEnterprise()
     {
-        if (Auth::check() == true && Auth::user()->role == 'user') {
-            $enterprise = DB::table('airlines')->where('username', Auth::user()->username)->first();
-            return view('accounts.enterprise', compact('enterprise'));
-        } else {
-            return view('errors.404');
-        }
+        $enterprise = DB::table('airlines')->where('username', Auth::user()->username)->first();
+        return view('accounts.enterprise', compact('enterprise'));
     }
 
     public function GetUpdateInformation()

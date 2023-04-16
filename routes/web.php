@@ -28,15 +28,17 @@ Route::get('/search', [MainController::class, 'searchflights']);
 Route::post('/search', [MainController::class, 'searchflights']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/sign-out', [MainController::class, 'signout']);
-    Route::get('/ticket/history', [TicketController::class, 'ticketList']);
-    Route::get('/ticket/detail/{id}', [TicketController::class, 'ticketDetail']);
-    Route::post('/booking', [TicketController::class, 'booking']);
-    Route::get('delete/account/{username}', [AccountController::class, 'deleteAccount']);
-    Route::get('/management/account/user', [AccountController::class, 'accountUser']);
-    Route::get('/information/changes', [AccountController::class, 'GetUpdateInformation']);
-    Route::post('/information/changes/save', [AccountController::class, 'PostUpdateInformation']);
-    Route::get('/password/change', [AccountController::class, 'GetChangePassword']);
-    Route::post('/password/change/save', [AccountController::class, 'PostChangePassword']);
+    Route::middleware(['user'])->group(function () {
+        Route::get('/ticket/history', [TicketController::class, 'ticketList']);
+        Route::get('/ticket/detail/{id}', [TicketController::class, 'ticketDetail']);
+        Route::post('/booking', [TicketController::class, 'booking']);
+        Route::get('delete/account/{username}', [AccountController::class, 'deleteAccount']);
+        Route::get('/management/account/user', [AccountController::class, 'accountUser']);
+        Route::get('/information/changes', [AccountController::class, 'GetUpdateInformation']);
+        Route::post('/information/changes/save', [AccountController::class, 'PostUpdateInformation']);
+        Route::get('/password/change', [AccountController::class, 'GetChangePassword']);
+        Route::post('/password/change/save', [AccountController::class, 'PostChangePassword']);
+    });
     Route::middleware(['admin'])->group(function () {
         Route::get('/user', [AdminController::class, 'index']);
         Route::get('/airport', [AdminController::class, 'airport']);
