@@ -3,6 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Le Chi Khai">
+    <meta name="description" content="GoGo Travel - a website for booking flight ticket." />
+    <meta name="keywords" content="GoGo Travel, Booking GoGo Travel, GoGo" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.js"
