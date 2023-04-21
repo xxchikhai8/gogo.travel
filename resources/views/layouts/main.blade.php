@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="application-name" content="GoGo Travel">
     <meta name="author" content="Le Chi Khai">
     <meta name="description" content="GoGo Travel - a website for booking flight ticket." />
     <meta name="keywords" content="GoGo Travel, Booking GoGo Travel, GoGo" />
