@@ -18,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
-    <title>@yield('title')</title>
+    <title>GoGo Travel | @yield('title')</title>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -38,9 +38,6 @@
                         <li class="nav-item">
                             <a class="nav-link headertext" href="/"><i class="fa-solid fa-home"></i>Home</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link headertext" href="/history">History</a>
-                        </li> --}}
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         @guest
@@ -141,18 +138,18 @@
                                 <div>
                                     <div class="form-floating mb-3">
                                         <input type="text" name="username" class="form-control border border-dark"
-                                            id="floatingInput" placeholder="Username" required oninvalid="this.setCustomValidity('Please Enter Username!')" oninput="setCustomValidity('')">
-                                        <label for="floatingInput"><i class="fa-solid fa-user"></i> Username</label>
+                                            id="usernameInput" placeholder="Username" required oninvalid="this.setCustomValidity('Please Enter Username!')" oninput="setCustomValidity('')">
+                                        <label for="usernameInput"><i class="fa-solid fa-user"></i> Username</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="password" class="form-control border border-dark" id="floatingPassword"
+                                        <input type="password" name="password" class="form-control border border-dark" id="PassInput"
                                             placeholder="Password" required oninvalid="this.setCustomValidity('Please Enter Password!')" oninput="setCustomValidity('')">
-                                        <label for="floatingPassword"><i class="fa-solid fa-unlock-keyhole"></i> Password</label>
+                                        <label for="PassInput"><i class="fa-solid fa-unlock-keyhole"></i> Password</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="password" name="confpassword" class="form-control border border-dark" id="floatingPassword"
+                                        <input type="password" name="confpassword" class="form-control border border-dark" id="ConfPassInput"
                                             placeholder="Confirm Password" required oninvalid="this.setCustomValidity('Please Enter Confirm Password!')" oninput="setCustomValidity('')">
-                                        <label for="floatingPassword"><i class="fa-solid fa-unlock-keyhole"></i> Confirm Password</label>
+                                        <label for="ConfPassInput"><i class="fa-solid fa-unlock-keyhole"></i> Confirm Password</label>
                                     </div>
                                     <div class="form-floating mb-3" id="enterprise">
                                         <input type="text" name="enterpriseNum" class="form-control border border-dark" id="enterpri"

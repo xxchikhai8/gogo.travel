@@ -33,8 +33,8 @@
                 <div class="col">
                     <div class="form-floating mb-3">
                         <input type="date" name="departDay" class="form-control border border-dark"
-                            id="floatingInput" placeholder="Departure Day">
-                        <label for="floatingInput">Departure Day</label>
+                            id="departureDay" placeholder="Departure Day">
+                        <label for="departureDay">Departure Day</label>
                     </div>
                 </div>
                 <button type="submit" id="search-button" class="btn btn-primary d-block ms-auto">Search
@@ -117,8 +117,8 @@
                     <div class="col">
                         <div class="form-floating mb-3">
                             <input type="date" name="departDay" class="form-control border border-dark"
-                                id="floatingInput" placeholder="Departure Day">
-                            <label for="floatingInput">Departure Day</label>
+                                id="departDay" placeholder="Departure Day">
+                            <label for="departDay">Departure Day</label>
                         </div>
                     </div>
                 </div>
