@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/admin.index.css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
-    <title>@yield('title')</title>
+    <title>GoGo Travel | @yield('title')</title>
 </head>
 
 <body class="d-flex flex-column h-100">
