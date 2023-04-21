@@ -9,25 +9,25 @@
                 <h4>Search Flights</h4>
                 <h6>Departure</h6>
                 <div class="form-floating mb-3">
-                    <select class="form-select border border-dark" id="floatingSelect" name='departure'>
+                    <select class="form-select border border-dark" id="departureSelect" name='departure'>
                         <option selected value="">Choose Departure</option>
                         @foreach ($airports as $airport)
                             <option value={{ $airport->airportCode }}>{{ $airport->location }} |
                                 {{ $airport->airportCode }}</option>
                         @endforeach
                     </select>
-                    <label for="floatingSelect">Departure</label>
+                    <label for="departureSelect">Departure</label>
                 </div>
                 <h6>Destination</h6>
                 <div class="form-floating mb-3">
-                    <select class="form-select border border-dark" id="floatingSelect" name='destination'>
+                    <select class="form-select border border-dark" id="destinationSelect" name='destination'>
                         <option selected value="">Choose Destination</option>
                         @foreach ($airports as $airport)
                             <option value={{ $airport->airportCode }}>{{ $airport->location }} |
                                 {{ $airport->airportCode }}</option>
                         @endforeach
                     </select>
-                    <label for="floatingSelect">Destination</label>
+                    <label for="destinationSelect">Destination</label>
                 </div>
                 <h6>Departure Date</h6>
                 <div class="col">
@@ -95,23 +95,23 @@
                 <div class="modal-body">
                     <h6>Departure</h6>
                     <div class="form-floating mb-3">
-                        <select class="form-select border border-dark" id="floatingSelect" name='departure'>
+                        <select class="form-select border border-dark" id="departSelect" name='departure'>
                             <option selected value="">Choose Departure</option>
                             @foreach ($airports as $airport)
                                 <option value={{ $airport->airportCode }}>{{ $airport->location }} | {{ $airport->airportCode }}</option>
                             @endforeach
                         </select>
-                        <label for="floatingSelect">Departure</label>
+                        <label for="departSelect">Departure</label>
                     </div>
                     <h6>Destination</h6>
                     <div class="form-floating mb-3">
-                        <select class="form-select border border-dark" id="floatingSelect" name='destination'>
+                        <select class="form-select border border-dark" id="destiSelect" name='destination'>
                             <option selected value="">Choose Destination</option>
                             @foreach ($airports as $airport)
                                 <option value={{ $airport->airportCode}}>{{ $airport->location }} | {{ $airport->airportCode}}</option>
                             @endforeach
                         </select>
-                        <label for="floatingSelect">Destination</label>
+                        <label for="destiSelect">Destination</label>
                     </div>
                     <h6>Departure Date</h6>
                     <div class="col">
