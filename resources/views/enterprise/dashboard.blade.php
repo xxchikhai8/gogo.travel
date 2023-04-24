@@ -13,10 +13,10 @@
                         <div class="col mt-2">
                             <label for="year">Choose Yaer:</label>
                             <select name="year" id="year" onchange="this.form.submit()">
-                                <option value="2023" selected>2023</option>
-                                @for ($i = 2024; $i < 2034; $i++ )
+                                @for ($i = $currentYear-4; $i < $currentYear ; $i++ )
                                     <option value="{{$i}}" @if ($i == $select) selected @endif>{{$i}}</option>
                                 @endfor
+                                <option value="{{$currentYear}}" selected>{{$currentYear}}</option>
                             </select>
                         </div>
                     </div>

@@ -13,9 +13,9 @@
         integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"
         integrity="sha256-5WYg3s9NxGKR2MpEBTy0QMT3Gvgxl3yKjbW4l0CfUUY=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/js/all.min.js"
-        integrity="sha256-+rLIGHyZHBDebNqckORMwB+/ueJuy2RqFcYAYlhjkCs=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+        integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
@@ -37,7 +37,7 @@
                             class="h2 mb-0">GoGo Travel</span></a>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link headertext" href="/"><i class="fa-solid fa-home"></i>Home</a>
+                            <a class="nav-link headertext" href="/"><i class="fa-solid fa-home me-2"></i>Home</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -53,8 +53,7 @@
                         @endguest
                         @auth
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle headertext-right" data-bs-toggle="dropdown"><i
-                                        class="fa-solid fa-user"></i> Hi,
+                                <a class="nav-link dropdown-toggle headertext-right" data-bs-toggle="dropdown"><i class="fa-solid fa-user me-2"></i>Hi,
                                     {{ Auth::user()->username }}</a>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
                                     <li><a href="/management/account/user" class="dropdown-item mb-2">Account</a></li>
