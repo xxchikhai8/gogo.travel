@@ -46,7 +46,7 @@
                             <a class="nav-link headertext" href="/ticket"><i class="fa-solid fa-ticket me-2"></i>Ticket</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link headertext" href="/dashboard?year={{$currentYear}}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                            <a class="{{ Request::route()->getName() === 'dashboard' ? 'nav-link headertext active fw-bold' : 'nav-link headertext'}}" href="/dashboard?year={{$currentYear}}"><i class="fa-solid fa-chart-line me-2"></i>Dashboard</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

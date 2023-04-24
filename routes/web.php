@@ -58,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/plane/new/save', [EnterpriseController::class, 'saveplane']);
         Route::get('/planes/{id}/update', [EnterpriseController::class, 'GetUpdatePlane']);
         Route::post('/planes/{id}/update', [EnterpriseController::class, 'PostUpdatePlane']);
-        Route::get('/dashboard', [EnterpriseController::class, 'dashboard']);
+        Route::get('/dashboard', [EnterpriseController::class, 'dashboard'])->name('dashboard');
         Route::get('/planes', [EnterpriseController::class, 'planelist']);
         Route::get('/ticket', [EnterpriseController::class, 'ticketlist']);
         Route::get('/password/changes', [AccountController::class, 'GetChangePassword']);
