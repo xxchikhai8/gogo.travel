@@ -111,7 +111,7 @@ class MainController extends Controller
             $desti = DB::table('airport')->where('airportCode', $result->destination)->value('airportName');
             $result->destination = $desti;
         }
-        $airports = DB::table('airport')->get();
+        $airports = DB::table('airport')->orderByRaw("LOWER(SUBSTRING_INDEX(location, ', ', -1)) asc")->get();
         return view('search', compact('results', 'airports', 'departure', 'destination'));
     }
 

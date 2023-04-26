@@ -87,7 +87,7 @@
                                 {{-- Get Current Page --}}
                                 <input type="hidden" name="current_page" value="{{Request::getRequestUri()}}">
                                 <div class="form-floating mb-3">
-                                    <input type="text" name="username" class="form-control border border-dark"
+                                    <input type="text" name="username" class="form-control border border-dark" value="{{ old('username')}}"
                                         id="signinInput" placeholder="Username" required oninvalid="this.setCustomValidity('Please Enter Username!')" oninput="setCustomValidity('')">
                                     <label for="signinInput"><i class="fa-solid fa-user"></i> Username</label>
                                 </div>

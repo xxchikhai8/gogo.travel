@@ -2,7 +2,7 @@
 @section('content')
 @section('title', 'Ticket Booking')
 <div class="container mb-3">
-    <a href="/" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
+    <a onclick="history.back();" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
 </div>
 <div class="w-100 mx-auto">
     <form action="/booking" method="POST">
@@ -159,19 +159,11 @@
         </div>
         <div class="w-75 mx-auto mt-5">
             <h3 class="text-center mb-3 fw-bold">Passenger Information</h3>
-            @if (count($errors) > 0)
-                <div class="d-flex justify-content-center">
-                    <div class="alert alert-danger">
-                        @foreach ($errors->all() as $err)
-                            <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ $err }}</div>
-                        @endforeach
-                    </div>
-                </div>
-            @endif
             <div class="form-floating mb-3">
                 <input type="text" name="passengerName" class="form-control border border-dark" id="floatingInput"
                     placeholder="Passenger Name">
                 <label for="floatingInput">Passenger Name</label>
+                <span class="text-danger">{{$errors->first("passengerName")}}</span>
             </div>
             <div class="form-floating mb-3">
                 <select class="form-select border border-dark" id="floatingSelect" name='seatClass'>
@@ -180,6 +172,7 @@
                     <option value="Bussiness"> Bussiness</option>
                 </select>
                 <label for="floatingInput">Seat Class</label>
+                <span class="text-danger">{{$errors->first("seatClass")}}</span>
             </div>
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input" type="checkbox" role="switch" id="reDay" name="returnOrNot" value="Yes">

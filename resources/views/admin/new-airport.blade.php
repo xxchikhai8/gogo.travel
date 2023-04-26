@@ -21,16 +21,19 @@
                 <input type="text" name="airportCode" class="form-control border border-dark" id="floatingInput"
                     placeholder="Airport ID">
                 <label for="floatingInput">Airport ID</label>
+                <span class="text-danger">{{ $errors->first("airportCode")}}</span>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" name="airportName" class="form-control border border-dark" id="floatingInput"
                     placeholder="Airport Name">
                 <label for="floatingInput">Airport Name</label>
+                <span class="text-danger">{{ $errors->first("airportName")}}</span>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" name="location" class="form-control border border-dark" id="floatingInput"
                     placeholder="Airport Location">
                 <label for="floatingInput">Airport Location</label>
+                <span class="text-danger">{{ $errors->first("location")}}</span>
             </div>
             <button type="submit" class="btn btn-primary d-block mx-auto">Save Flight</button>
         </form>
