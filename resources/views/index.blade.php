@@ -52,7 +52,7 @@
             </div>
             <h4>Ticket List</h4>
             @foreach ($flights as $flight)
-                <div class="border border-dark p-2 rounded-2 mb-2" id="ticket-border">
+                <div class="border border-dark p-2 rounded-2 mb-2 blur" id="ticket-border">
                     <div class="card" id="border-transparent">
                         <div class="card-body">
                             <div class="row row-cols-1 row-cols-lg-2">

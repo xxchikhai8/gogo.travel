@@ -112,7 +112,7 @@ class MainController extends Controller
             $result->destination = $desti;
         }
         $airports = DB::table('airport')->orderByRaw("LOWER(SUBSTRING_INDEX(location, ', ', -1)) asc")->get();
-        return view('search', compact('results', 'airports', 'departure', 'destination'));
+        return view('search', compact('results', 'airports', 'departure', 'destination', 'departDay'));
     }
 
     public function signout(Request $request)

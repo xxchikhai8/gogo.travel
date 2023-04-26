@@ -33,7 +33,7 @@
                 <div class="col">
                     <div class="form-floating mb-3">
                         <input type="date" name="departDay" class="form-control border border-dark" id="floatingInput"
-                            placeholder="Departure Day">
+                            placeholder="Departure Day" value="{{$departDay}}">
                         <label for="floatingInput">Departure Day</label>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
             <h4>Ticket List</h4>
             @if ($results->isNotEmpty())
             @foreach ($results as $result)
-            <div class="border border-dark p-2 rounded-2 mb-2" id="ticket-border">
+            <div class="border border-dark p-2 rounded-2 mb-2 blur" id="ticket-border">
                 <div class="card" id="border-transparent">
                     <div class="card-body">
                         <div class="row row-cols-1 row-cols-lg-2">
