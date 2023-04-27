@@ -52,9 +52,7 @@
                 "<'row'<'col-sm-12'tr>>",
             "responsive": true,
             "lengthChange": true,
-            columnDefs: [
-
-        ]
+            "ordering": false,
         });
     });
 </script>
