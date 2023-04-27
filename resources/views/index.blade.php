@@ -7,30 +7,29 @@
             <form action="/search" method="post">
                 @csrf
                 <h4>Search Flights</h4>
-                <h6>Departure</h6>
-                <div class="form-floating mb-3">
-                    <select class="form-select border border-dark" id="departureSelect" name='departure'>
-                        <option selected value="">Choose Departure</option>
+                <div class="mb-2">
+                    <h6>Departure:</h6>
+                    <select class="js-departure form-control" name="departure">
+                        <option></option>
                         @foreach ($airports as $airport)
-                            <option value={{ $airport->airportCode }}>{{ $airport->location }} |
-                                {{ $airport->airportCode }}</option>
+                            <option value={{ $airport->airportCode }}>
+                                {{ $airport->location }} | {{ $airport->airportCode }}
+                            </option>
                         @endforeach
                     </select>
-                    <label for="departureSelect">Departure</label>
                 </div>
-                <h6>Destination</h6>
-                <div class="form-floating mb-3">
-                    <select class="form-select border border-dark" id="destinationSelect" name='destination'>
-                        <option selected value="">Choose Destination</option>
+                <div class="mb-2">
+                    <h6>Destination:</h6>
+                    <select class="js-destination form-control" name="destination">
+                        <option></option>
                         @foreach ($airports as $airport)
-                            <option value={{ $airport->airportCode }}>{{ $airport->location }} |
-                                {{ $airport->airportCode }}</option>
+                        <option value={{ $airport->airportCode }}>{{ $airport->location }} |
+                            {{ $airport->airportCode }}</option>
                         @endforeach
                     </select>
-                    <label for="destinationSelect">Destination</label>
                 </div>
-                <h6>Departure Date</h6>
-                <div class="col">
+                <div class="mb-3">
+                    <h6>Departure Date</h6>
                     <div class="form-floating mb-3">
                         <input type="date" name="departDay" class="form-control border border-dark"
                             id="departureDay" placeholder="Departure Day">
@@ -93,32 +92,34 @@
             <form action="/search" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <h6>Departure</h6>
-                    <div class="form-floating mb-3">
-                        <select class="form-select border border-dark" id="departSelect" name='departure'>
-                            <option selected value="">Choose Departure</option>
+                    <div class="mb-2">
+                        <h6>Departure:</h6>
+                        <select class="js-departure-modal form-control" name="departure">
+                            <option></option>
                             @foreach ($airports as $airport)
-                                <option value={{ $airport->airportCode }}>{{ $airport->location }} | {{ $airport->airportCode }}</option>
+                                <option value={{ $airport->airportCode }}>
+                                    {{ $airport->location }} | {{ $airport->airportCode }}
+                                </option>
                             @endforeach
                         </select>
-                        <label for="departSelect">Departure</label>
                     </div>
-                    <h6>Destination</h6>
-                    <div class="form-floating mb-3">
-                        <select class="form-select border border-dark" id="destiSelect" name='destination'>
-                            <option selected value="">Choose Destination</option>
+                    <div class="mb-2">
+                        <h6>Destination:</h6>
+                        <select class="js-destination-modal form-control" name="destination">
+                            <option></option>
                             @foreach ($airports as $airport)
-                                <option value={{ $airport->airportCode}}>{{ $airport->location }} | {{ $airport->airportCode}}</option>
+                                <option value={{ $airport->airportCode }}>
+                                    {{ $airport->location }} | {{ $airport->airportCode }}
+                                </option>
                             @endforeach
                         </select>
-                        <label for="destiSelect">Destination</label>
                     </div>
-                    <h6>Departure Date</h6>
-                    <div class="col">
+                    <div class="mb-3">
+                        <h6>Departure Date</h6>
                         <div class="form-floating mb-3">
                             <input type="date" name="departDay" class="form-control border border-dark"
-                                id="departDay" placeholder="Departure Day">
-                            <label for="departDay">Departure Day</label>
+                                id="departureDay" placeholder="Departure Day">
+                            <label for="departureDay">Departure Day</label>
                         </div>
                     </div>
                 </div>

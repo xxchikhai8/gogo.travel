@@ -110,3 +110,28 @@ $('.show_delete').click(function(event) {
 });
 
 
+$(document).ready(function() {
+    $('.js-departure').select2({
+        placeholder:'Choose Departure'
+    });
+    $('.js-destination').select2({
+        placeholder:'Choose Destination'
+    });
+    $('.js-departure-modal').select2({
+        placeholder:'Choose Departure',
+        dropdownParent: $('#search-flights-form')
+    });
+
+    $('.js-destination-modal').select2({
+        placeholder:'Choose Destination',
+        dropdownParent: $('#search-flights-form')
+    });
+});
+
+$(document).on("select2:open", () => {
+    document.querySelector(".select2-container--open .select2-search__field").focus()
+});
+
+
+
+

@@ -7,30 +7,30 @@
             <form action="/search" method="post" role="search">
                 @csrf
                 <h4>Search Flights</h4>
-                <h6>Departure</h6>
-                <div class="form-floating mb-3">
-                    <select class="form-select border border-dark" id="floatingSelect" name='departure'>
-                        <option selected value="">Choose Departure</option>
+                <div class="mb-2">
+                    <h6>Departure:</h6>
+                    <select class="js-departure form-control" name="departure">
+                        <option></option>
                         @foreach ($airports as $airport)
-                        <option value={{ $airport->airportCode }} @if ($airport->airportCode==$departure) selected @endif >{{ $airport->location }} |
-                            {{ $airport->airportCode }}</option>
+                            <option value={{ $airport->airportCode }} @if ($airport->airportCode==$departure) selected @endif >
+                                {{ $airport->location }} | {{ $airport->airportCode }}
+                            </option>
                         @endforeach
                     </select>
-                    <label for="floatingSelect">Departure</label>
                 </div>
-                <h6>Destination</h6>
-                <div class="form-floating mb-3">
-                    <select class="form-select border border-dark" id="floatingSelect" name='destination'>
-                        <option selected value="">Choose Destination</option>
+                <div class="mb-2">
+                    <h6>Destination:</h6>
+                    <select class="js-destination form-control" name="destination">
+                        <option></option>
                         @foreach ($airports as $airport)
-                        <option value="{{ $airport->airportCode }}" @if ($airport->airportCode==$destination) selected @endif>{{ $airport->location }} |
-                            {{ $airport->airportCode }}</option>
+                            <option value="{{ $airport->airportCode }}" @if ($airport->airportCode==$destination) selected @endif>
+                                {{ $airport->location }} | {{ $airport->airportCode }}
+                            </option>
                         @endforeach
                     </select>
-                    <label for="floatingSelect">Destination</label>
                 </div>
-                <h6>Departure Date</h6>
                 <div class="col">
+                    <h6>Departure Date</h6>
                     <div class="form-floating mb-3">
                         <input type="date" name="departDay" class="form-control border border-dark" id="floatingInput"
                             placeholder="Departure Day" value="{{$departDay}}">
@@ -100,33 +100,33 @@
             <form action="/search" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <h6>Departure</h6>
-                    <div class="form-floating mb-3">
-                        <select class="form-select border border-dark" id="floatingSelect" name='departure'>
-                            <option selected value="">Choose Departure</option>
+                    <div class="mb-2">
+                        <h6>Departure:</h6>
+                        <select class="js-departure form-control" name="departure">
+                            <option></option>
                             @foreach ($airports as $airport)
-                            <option value={{ $airport->airportCode }}>{{ $airport->location }} | {{
-                                $airport->airportCode }}</option>
+                                <option value={{ $airport->airportCode }} @if ($airport->airportCode==$departure) selected @endif>
+                                    {{ $airport->location }} | {{ $airport->airportCode }}
+                                </option>
                             @endforeach
                         </select>
-                        <label for="floatingSelect">Departure</label>
                     </div>
-                    <h6>Destination</h6>
-                    <div class="form-floating mb-3">
-                        <select class="form-select border border-dark" id="floatingSelect" name='destination'>
-                            <option selected value="">Choose Destination</option>
+                    <div class="mb-2">
+                        <h6>Destination:</h6>
+                        <select class="js-destination form-control" name="destination">
+                            <option></option>
                             @foreach ($airports as $airport)
-                            <option value={{ $airport->airportCode}}>{{ $airport->location }} | {{
-                                $airport->airportCode}}</option>
+                                <option value="{{ $airport->airportCode }}" @if ($airport->airportCode==$destination) selected @endif>
+                                    {{ $airport->location }} | {{ $airport->airportCode }}
+                                </option>
                             @endforeach
                         </select>
-                        <label for="floatingSelect">Destination</label>
                     </div>
-                    <h6>Departure Date</h6>
                     <div class="col">
+                        <h6>Departure Date</h6>
                         <div class="form-floating mb-3">
-                            <input type="date" name="departDay" class="form-control border border-dark"
-                                id="floatingInput" placeholder="Departure Day">
+                            <input type="date" name="departDay" class="form-control border border-dark" id="floatingInput"
+                                placeholder="Departure Day" value="{{$departDay}}">
                             <label for="floatingInput">Departure Day</label>
                         </div>
                     </div>

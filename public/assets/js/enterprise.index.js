@@ -27,3 +27,16 @@ $('.show_confirm').click(function(event) {
         }
     });
 });
+
+$(document).ready(function() {
+    $('.js-departure').select2({
+        placeholder:'Choose Departure'
+    });
+    $('.js-destination').select2({
+        placeholder:'Choose Destination'
+    });
+});
+
+$(document).on("select2:open", () => {
+    document.querySelector(".select2-container--open .select2-search__field").focus()
+});
