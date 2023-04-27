@@ -84,7 +84,7 @@ class EnterpriseController extends Controller
             'boardingTime'=>'required',
             'flightTime'=>'required',
             'returnDay'=>'required|after:departDay',
-            'ticketPrice'=>'required',
+            'ticketPrice'=>'required|numeric',
         ],[
             'flightID.required' => 'Please Enter Flight No',
             'planeID.required' => 'Please Choose Plane No',
@@ -96,6 +96,7 @@ class EnterpriseController extends Controller
             'returnDay.required' => 'Please Enter Return Date',
             'ticketPrice.required' => 'Please Enter Price of Ticker',
             'returnDay.after' => 'Return Day of Flight must be after Departure Day of Flight',
+            'ticketPrice.numeric' => 'Ticket Price must be number'
         ]);
 
         if (DB::table('flights')->where('flightID', $request->input('flightID'))->exists())
@@ -154,7 +155,7 @@ class EnterpriseController extends Controller
             'boardingTime'=>'required',
             'flightTime'=>'required',
             'returnDay'=>'required|after:departDay',
-            'ticketPrice'=>'required',
+            'ticketPrice'=>'required|numeric',
         ],[
             'flightID.required' => 'Please Enter Flight No',
             'planeID.required' => 'Please Choose Plane No',
@@ -166,6 +167,7 @@ class EnterpriseController extends Controller
             'returnDay.required' => 'Please Enter Return Date',
             'ticketPrice.required' => 'Please Enter Price of Ticker',
             'returnDay.after' => 'Return Day of Flight must be after Departure Day of Flight',
+            'ticketPrice.numeric' => 'Ticket Price must be number'
         ]);
         $old = DB::table('flights')->where('flightID', $id)->value('flightID');
         if (DB::table('flights')->where('flightID', $request->input('flightID'))->exists() && $old != $request->input('flightID')) {
