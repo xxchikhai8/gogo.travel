@@ -69,6 +69,7 @@ class MainController extends Controller
                 $users->save();
                 $customer = new Customers;
                 $customer->username = $request->input('username');
+                $customer->cusName = $request->input('username');
                 $customer->save();
                 return redirect($request->input('current_page'))->with('notify', 'signupSuccess');
             } else {

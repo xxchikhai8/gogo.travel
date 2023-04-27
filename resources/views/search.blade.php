@@ -102,7 +102,7 @@
                 <div class="modal-body">
                     <div class="mb-2">
                         <h6>Departure:</h6>
-                        <select class="js-departure form-control" name="departure">
+                        <select class="js-departure-modal form-control" name="departure">
                             <option></option>
                             @foreach ($airports as $airport)
                                 <option value={{ $airport->airportCode }} @if ($airport->airportCode==$departure) selected @endif>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="mb-2">
                         <h6>Destination:</h6>
-                        <select class="js-destination form-control" name="destination">
+                        <select class="js-destination-modal form-control" name="destination">
                             <option></option>
                             @foreach ($airports as $airport)
                                 <option value="{{ $airport->airportCode }}" @if ($airport->airportCode==$destination) selected @endif>
