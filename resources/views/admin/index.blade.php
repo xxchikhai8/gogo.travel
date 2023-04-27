@@ -48,7 +48,7 @@
     <script>
         Swal.fire({
             title: 'Reset Password Successful!',
-            text: 'New Password: a123456',
+            text: 'New Password: user@123',
             icon: 'success',
             allowOutsideClick: false,
         })
