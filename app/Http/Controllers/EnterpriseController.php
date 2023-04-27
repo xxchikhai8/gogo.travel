@@ -187,8 +187,8 @@ class EnterpriseController extends Controller
             $tickets = Tickets::where('flightID', $id)->get();
             foreach ($tickets as $ticket) {
                 $ticket->state = $request->input('state');
+                $ticket->update();
             }
-            $tickets->update();
             return redirect('/flight')->with('notify', 'editSuccess');
         }
     }
