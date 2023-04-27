@@ -23,8 +23,9 @@
                     <select class="js-destination form-control" name="destination">
                         <option></option>
                         @foreach ($airports as $airport)
-                        <option value={{ $airport->airportCode }}>{{ $airport->location }} |
-                            {{ $airport->airportCode }}</option>
+                            <option value={{ $airport->airportCode }}>
+                                {{ $airport->location }} | {{ $airport->airportCode }}
+                            </option>
                         @endforeach
                     </select>
                 </div>

@@ -118,6 +118,8 @@ header+main {
     width: 100%;
     max-width: 100%;
     min-width: 100%;
+    border: #000000 solid 0.5px;
+    border-radius: 4px;
 }
 
 
