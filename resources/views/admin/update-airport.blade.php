@@ -6,7 +6,7 @@
         <form action="/airport/update/save/{{$airport->airportCode}}" method="POST">
             @csrf
             <a href="/airport" class="btn btn-dark"><i class="fa-solid fa-chevron-left"></i> Back</a>
-            <h3 class="text-center mb-3 fw-bold">New Airport</h3>
+            <h3 class="text-center mb-3 fw-bold">Update Airport</h3>
             <input type="hidden" name="current_page" value="{{Request::getRequestUri()}}">
             <div class="form-floating mb-3">
                 <input type="text" name="airportCode" class="form-control border border-dark" id="floatingInput"
