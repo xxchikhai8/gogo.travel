@@ -34,7 +34,7 @@
     <script>
         Swal.fire({
             title: 'Update Airport Information Fail!',
-            text: 'The Airport Information that you enter to update was exit!',
+            text: 'The Airport Information that you enter to update was exist!',
             icon: 'error',
             allowOutsideClick: false,
         })

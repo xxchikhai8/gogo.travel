@@ -80,18 +80,17 @@ class AdminController extends Controller
         ]);
         $oldCode = DB::table('airport')->where('airportCode', $id)->value('airportCode');
         $oldName = DB::table('airport')->where('airportCode', $id)->value('airportName');
-        if (DB::table('airport')->where('airportCode', $request->input('airportCode'))->exists() || DB::table('airport')->where('airportName', $request->input('airportName'))->exists()) {
-            if ($oldCode != $request->input('airportCode') || $oldName != $request->input('airportName')) {
+        if (DB::table('airport')->where('airportCode', $request->input('airportCode'))->exists() && $oldCode != $request->input('airportCode') ||
+            DB::table('airport')->where('airportName', $request->input('airportName'))->exists() && $oldName != $request->input('airportName')) {
                 return redirect($request->input('current_page'))->with('notify', 'editFail');
-            }
-            else {
-                $airport = Airports::where('airportCode', $id)->first();
-                $airport->airportCode = $request->input('airportCode');
-                $airport->airportName = $request->input('airportName');
-                $airport->location = $request->input('location');
-                $airport->update();
-                return redirect('/airport')->with('notify', 'updateSuccess');
-            }
+        }
+        else {
+            $airport = Airports::where('airportCode', $id)->first();
+            $airport->airportCode = $request->input('airportCode');
+            $airport->airportName = $request->input('airportName');
+            $airport->location = $request->input('location');
+            $airport->update();
+            return redirect('/airport')->with('notify', 'updateSuccess');
         }
     }
 }
