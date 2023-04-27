@@ -219,6 +219,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col fw-bold">
+                                    Flight Status:
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    {{ $ticket->state}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row p-2 bg-warning text-dark" style="border-radius:0px 0px 1rem 1rem;"></div>
                     <a href="/ticket/detail/{{$ticket->ticketID}}" class="stretched-link" title="Click To View More Detail of Ticket"></a>

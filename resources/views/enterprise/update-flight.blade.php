@@ -94,6 +94,7 @@
                     <option value="On-Time" @if($flight->state=='On-Time') selected @else @endif>On-Time</option>
                     <option value="Delay" @if($flight->state=='Delay') selected @else @endif>Delay</option>
                     <option value="Cancel" @if($flight->state=='Cancel') selected @else @endif>Cancel</option>
+                    <option value="Finish" @if($flight->state=='Finish') selected @else @endif>Return Finish</option>
                   </select>
                 <label for="floatingSelect">State</label>
             </div>

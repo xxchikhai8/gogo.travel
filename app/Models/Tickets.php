@@ -14,6 +14,7 @@ class Tickets extends Model
         'flightID',
         'username',
         'passengerName',
+        'citizenID',
         'luggage',
         'gate',
         'tickerPrice',

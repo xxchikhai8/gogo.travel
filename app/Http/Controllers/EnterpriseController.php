@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Flights;
+use App\Models\Tickets;
 use App\Models\Plane;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -183,6 +184,11 @@ class EnterpriseController extends Controller
             $saveflight->priceTicket = $request->input('ticketPrice');
             $saveflight->state = $request->input('state');
             $saveflight->update();
+            $tickets = Tickets::where('flightID', $id)->get();
+            foreach ($tickets as $ticket) {
+                $ticket->state = $request->input('state');
+            }
+            $tickets->update();
             return redirect('/flight')->with('notify', 'editSuccess');
         }
     }

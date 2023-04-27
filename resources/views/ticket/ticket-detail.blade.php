@@ -203,6 +203,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col fw-bold">
+                                Flight Status:
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {{ $ticket->state}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row p-2 bg-warning text-dark" style="border-radius:0px 0px 1rem 1rem;"></div>
             </div>
@@ -369,7 +381,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-3">
                             <div class="row">
                                 <div class="col fw-bold">
                                     Seat:
@@ -378,6 +390,22 @@
                             <div class="row">
                                 <div class="col">
                                     {{$ticket->seat}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col fw-bold">
+                                    Flight Status:
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    @if ($ticket->state == "Finish")
+                                        Return Completed
+                                    @else
+                                        Excepted
+                                    @endif
                                 </div>
                             </div>
                         </div>

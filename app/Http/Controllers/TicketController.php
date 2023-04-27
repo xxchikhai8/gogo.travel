@@ -41,8 +41,10 @@ class TicketController extends Controller
     {
         $this->validate($request, [
             'passengerName'=>'required',
+            'citizenID' => 'required'
         ],[
             'passengerName.required' => 'Please Enter Name of Passenger ',
+            'citizenID.required' => 'Please Enter Citizen Number'
         ]);
         $saveTicket = new Tickets;
         $url = '/ticket/booking' . '/' . $request->input('flightID');
@@ -50,13 +52,13 @@ class TicketController extends Controller
         $saveTicket->flightID = $request->input('flightID');
         $saveTicket->username = Auth::user()->username;
         $saveTicket->passengerName = $request->input('passengerName');
+        $saveTicket->citizenID = $request->input('citizenID');
         $saveTicket->luggage = $request->input('luggage');
         $saveTicket->gate = $request->input('gate');
         $saveTicket->seatClass = $request->input('seatClass');
         if ($request->input('seetClass')=='Bussiness') {
             $char = 'ABCD';
             $seat = $char[rand(0, strlen($char) - 1)]. ' - ' . '0' . rand(1, 4);
-
         }
         else {
             $char = 'ABCDEG';

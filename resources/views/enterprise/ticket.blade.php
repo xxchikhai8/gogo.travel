@@ -9,6 +9,7 @@
                 <th>Flight No</th>
                 <th>User</th>
                 <th>Passenger Name</th>
+                <th>Citizen No</th>
                 <th>Luggage</th>
                 <th>Gate</th>
                 <th>Seat Class</th>
@@ -16,6 +17,7 @@
                 <th>Booking Day</th>
                 <th>Ticket Type</th>
                 <th>Price Ticket</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +27,7 @@
                     <td>{{ $ticket->flightID }}</td>
                     <td>{{ $ticket->username }}</td>
                     <td>{{ $ticket->passengerName }}</td>
+                    <td>{{ $ticket->citizenID }}</td>
                     <td>{{ $ticket->luggage }}</td>
                     <td>{{ $ticket->gate }}</td>
                     <td>{{ $ticket->seatClass }}</td>
@@ -33,6 +36,7 @@
                     <td><?php echo date_format($date, 'd-m-Y'); ?></td>
                     <td>{{ $ticket->ticketType }}</td>
                     <td>{{ $ticket->ticketPrice }}</td>
+                    <td>{{ $ticket->state }}</td>
                 </tr>
             @endforeach
         </tbody>
@@ -48,6 +52,9 @@
                 "<'row'<'col-sm-12'tr>>",
             "responsive": true,
             "lengthChange": true,
+            columnDefs: [
+
+        ]
         });
     });
 </script>

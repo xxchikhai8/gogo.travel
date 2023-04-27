@@ -135,7 +135,6 @@ header+main {
 }
 
 .blur {
-    transition: box-shadow 0.5s;
     transition-timing-function: linear;
     transition: box-shadow 0.8s, transform 0.8s;
 }

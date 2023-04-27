@@ -166,6 +166,12 @@
                 <span class="text-danger">{{$errors->first("passengerName")}}</span>
             </div>
             <div class="form-floating mb-3">
+                <input type="text" name="citizenID" class="form-control border border-dark" id="floatingInput"
+                    placeholder="Citizen ID">
+                <label for="floatingInput">Citizen ID</label>
+                <span class="text-danger">{{$errors->first("citizenID")}}</span>
+            </div>
+            <div class="form-floating mb-3">
                 <select class="form-select border border-dark" id="floatingSelect" name='seatClass'>
                     <option selected value="Economy"> Economy</option>
                     <option value="Premium Economy"> Premium Economy</option>
