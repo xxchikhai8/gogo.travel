@@ -50,7 +50,7 @@
     <script>
         Swal.fire({
             title: 'Update Plane Information Fail!',
-            text: 'Plane No was exit!',
+            text: 'Plane No was exist!',
             icon: 'error',
             allowOutsideClick: false,
         })

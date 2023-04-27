@@ -93,7 +93,7 @@
     <script>
         Swal.fire({
             title: 'Add New Flight Information Fail!',
-            text: 'Flight No was exit!',
+            text: 'Flight No was exist!',
             icon: 'error',
             allowOutsideClick: false,
         })
