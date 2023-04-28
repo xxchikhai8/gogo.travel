@@ -64,7 +64,12 @@ class AccountController extends Controller
 
     public function GetChangePassword()
     {
-        return view('accounts.update-password');
+        if(Auth::check()==true && Auth::user()->role=='admin'){
+            return back();
+        }
+        else{
+            return view('accounts.update-password');
+        }
     }
 
     public function PostChangePassword(Request $request)
@@ -82,7 +87,7 @@ class AccountController extends Controller
             $user->password = $hash;
             $user->update();
             if (Auth::user()->role == 'user') {
-                return redirect('//management/account/user')->with('notify', 'changePass');
+                return redirect('/management/account/user')->with('notify', 'changePass');
             } else {
                 return redirect('/management/account/enterprise')->with('notify', 'changePass');
             }

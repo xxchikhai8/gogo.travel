@@ -28,6 +28,7 @@ Route::get('/search', [MainController::class, 'searchflights']);
 Route::post('/search', [MainController::class, 'searchflights']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/sign-out', [MainController::class, 'signout']);
+    Route::get('/password/changes', [AccountController::class, 'GetChangePassword']);
     Route::middleware(['user'])->group(function () {
         Route::get('/ticket/history', [TicketController::class, 'ticketList']);
         Route::get('/ticket/detail/{id}', [TicketController::class, 'ticketDetail']);
@@ -36,7 +37,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/management/account/user', [AccountController::class, 'accountUser']);
         Route::get('/information/changes', [AccountController::class, 'GetUpdateInformation']);
         Route::post('/information/changes/save', [AccountController::class, 'PostUpdateInformation']);
-        Route::get('/password/change', [AccountController::class, 'GetChangePassword']);
         Route::post('/password/change/save', [AccountController::class, 'PostChangePassword']);
     });
     Route::middleware(['admin'])->group(function () {
@@ -61,7 +61,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [EnterpriseController::class, 'dashboard'])->name('dashboard');
         Route::get('/planes', [EnterpriseController::class, 'planelist']);
         Route::get('/ticket', [EnterpriseController::class, 'ticketlist']);
-        Route::get('/password/changes', [AccountController::class, 'GetChangePassword']);
         Route::post('/password/changes/save', [AccountController::class, 'PostChangePassword']);
         Route::get('/management/account/enterprise', [AccountController::class, 'accountEnterprise']);
     });

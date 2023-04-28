@@ -26,7 +26,7 @@
                 <label for="floatingInput">Airport Location</label>
                 <span class="text-danger">{{ $errors->first("location")}}</span>
             </div>
-            <button type="submit" class="btn btn-primary d-block mx-auto show_confirm">Save Flight</button>
+            <button type="submit" class="btn btn-primary d-block mx-auto show_confirm">Save Airport</button>
         </form>
     </div>
 </div>
