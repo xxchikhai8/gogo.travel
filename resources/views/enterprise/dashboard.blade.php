@@ -11,7 +11,7 @@
                 <form action="/dashboard" method="GET">
                     <div class="row text-end pe-5">
                         <div class="col mt-2">
-                            <label for="year">Choose Yaer:</label>
+                            <label for="year">Choose Year:</label>
                             <select name="year" id="year" onchange="this.form.submit()">
                                 @for ($i = $currentYear-4; $i < $currentYear ; $i++ )
                                     <option value="{{$i}}" @if ($i == $select) selected @endif>{{$i}}</option>
@@ -26,7 +26,7 @@
         <div class="layouts divider"></div>
         <div class='mx-auto'>
             <div>
-                <canvas id="scatterChart" class="m-3 w-100 mx-auto"></canvas>
+                <canvas id="scatterChart" class="m-3 w-100 h-100 mx-auto" height="350"></canvas>
             </div>
         </div>
     </div>
