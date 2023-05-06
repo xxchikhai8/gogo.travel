@@ -73,7 +73,14 @@
                 legend: {
                     display: false,
                 }
-            }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: 'black',
+                    }
+                },
+            },
         }
     });
 </script>

@@ -271,7 +271,12 @@ class EnterpriseController extends Controller
         ->where('planeID', 'LIKE', "%{$airlineCode}%")
         ->whereYear('bookingDay', '=', $request->input('year'))
         ->whereMonth('bookingDay', '=', 12)->sum('ticketPrice');
-        $select = $request->input('year');
+        if ($currentYear!=$request->input('year')) {
+            $select = $request->input('year');
+        }
+        else {
+            $select=$currentYear;
+        };
         return view('enterprise.dashboard', compact('revenue1', 'revenue2', 'revenue3', 'revenue4', 'revenue5', 'revenue6', 'revenue7', 'revenue8', 'revenue9', 'revenue10', 'revenue11', 'revenue12', 'select', 'currentYear'));
     }
 }
